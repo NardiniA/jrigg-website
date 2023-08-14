@@ -3,10 +3,15 @@ import "boxicons/css/boxicons.min.css";
 import { inter, pt_serif } from "./fonts";
 import { classes } from "@/utilities/classes";
 import type { Children } from "@/types/children";
+import Providers from "./Providers";
+import Header from "@/components/Header";
+import { getSettings } from "@/lib/getSettings";
 
 export default async function layout({
   children,
 }: Children) {
+  const settings = await getSettings({ draftable: true });
+
   return (
     <html
       lang="en"
@@ -16,7 +21,14 @@ export default async function layout({
       )}
     >
       <body>
-        {children}
+        <Providers>
+          <main className="page">
+            <Header data={settings} />
+            <main className="main">
+              {children}
+            </main>
+          </main>
+        </Providers>
       </body>
     </html>
   )

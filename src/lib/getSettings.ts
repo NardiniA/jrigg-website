@@ -1,10 +1,13 @@
 import "server-only";
-import Transport from "./transport";
+import Transport, { GetProps, TransportProps } from "./transport";
+import { Setting } from "@/types/payload-types";
 
-export const getSettings = async (options?: { draftable?: boolean, property?: string }): Promise<Transport> => {
-  const transport = await new Transport({
-    collection: "globals/settings",
-  }).get({ draftable: options?.draftable });
+export const settingsOptions: TransportProps = {
+  collection: "globals/settings",
+}
 
-  return transport.value(options?.property);
+export const getSettings = async (options?: GetProps): Promise<Setting> => {
+  const transport = new Transport(settingsOptions);
+
+  return (await transport.get(options)).value();
 }

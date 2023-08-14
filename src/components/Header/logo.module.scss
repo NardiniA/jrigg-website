@@ -1,0 +1,19 @@
+.header {
+  &-logo {
+    z-index: 110 !important;
+    display: block;
+    overflow: hidden;
+    width: 127px;
+    height: 63px;
+    z-index: var(--z-fixed);
+    font-size: 0;
+    text-indent: -3000px;
+    background-image: url(https://res.cloudinary.com/j-rigg-construction/image/upload/v1668688050/jrigg-logo-1_gvutwz.svg);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+
+    @media (min-width: 992px) {
+      margin-bottom: 3rem;
+    }
+  }
+}

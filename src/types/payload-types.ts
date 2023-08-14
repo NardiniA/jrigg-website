@@ -50,7 +50,7 @@ export interface Page {
             [k: string]: unknown;
           }[];
         };
-        associates?: {
+        associates: {
           name: string;
           url?: string;
           image?: string | Media;
@@ -106,7 +106,7 @@ export interface Page {
             [k: string]: unknown;
           }[];
         };
-        members?: {
+        members: {
           name: string;
           position: string;
           image: string | Media;
@@ -171,7 +171,7 @@ export interface Project {
     thumbnail: string | Media;
   };
   gallery: {
-    gallery?: {
+    gallery: {
       media: string | Media;
       id?: string;
     }[];
@@ -788,7 +788,7 @@ export interface Setting {
     description: string;
     author: string;
     ogImage: string | Media;
-    keywords?: {
+    keywords: {
       name: string;
       id?: string;
     }[];
@@ -957,11 +957,11 @@ export interface Setting {
     }[];
   };
   navigation: {
-    items?: {
+    items: {
       type: "link" | "subMenu" | "auto";
       label: string;
       subMenu?: {
-        sublink?: {
+        sublink: {
           link: {
             type?: "reference" | "custom";
             label: string;

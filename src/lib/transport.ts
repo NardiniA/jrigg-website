@@ -3,9 +3,9 @@ import { stringify } from "qs";
 import { Query } from "@/types/where";
 import { draftMode } from "next/dist/client/components/headers";
 
-type TransportProps = { collection: string, query?: Query };
+export type TransportProps = { collection: string, query?: Query };
 
-type GetProps = { draftable?: boolean };
+export type GetProps = { draftable?: boolean };
 
 class QueryResult {
   constructor(private data: any) {}

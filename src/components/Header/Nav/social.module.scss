@@ -1,0 +1,39 @@
+.header {
+  &-social {
+    display: block;
+
+    h6 {
+      display: block;
+      margin-bottom: 1rem;
+      font-family: var(--body-font);
+      font-weight: 400;
+      color: var(--white-alt);
+    }
+
+    a {
+      display: inline-block;
+      font-size: 1.5rem;
+      margin-right: 1.5rem;
+      line-height: 1;
+      transition-duration: 0.3s;
+      transition-timing-function: ease-out;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &:hover,
+      &:focus {
+        // opacity: 0.75;
+        color: var(--white-colour);
+      }
+
+      i {
+        font-size: 1.75rem;
+        width: 1.75rem;
+        height: 1.75rem;
+        line-height: 1;
+      }
+    }
+  }
+}

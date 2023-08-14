@@ -1,0 +1,47 @@
+.header {
+  &-toggle {
+    z-index: 110 !important;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+
+    span {
+      width: 40px;
+      height: 3px;
+      display: block;
+      margin-bottom: 7px;
+      background: #fff;
+      transition-duration: 0.3s;
+      transition-timing-function: ease-out;
+
+      &:nth-child(2) {
+        width: 30px;
+      }
+
+      &:nth-child(3) {
+        width: 20px;
+        margin-bottom: 0;
+      }
+    }
+
+    &.open {
+      height: 23px;
+
+      span {
+        &:nth-child(1) {
+          transform: rotate(45deg);
+        }
+
+        &:nth-child(2) {
+          display: none !important;
+        }
+
+        &:nth-child(3) {
+          width: 100%;
+          transform: translateY(-10px) rotate(-45deg);
+        }
+      }
+    }
+  }
+}
