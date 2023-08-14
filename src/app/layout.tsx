@@ -6,6 +6,7 @@ import type { Children } from "@/types/children";
 import Providers from "./Providers";
 import Header from "@/components/Header";
 import { getSettings } from "@/lib/getSettings";
+import Footer from "@/components/Footer";
 
 export default async function layout({
   children,
@@ -26,6 +27,7 @@ export default async function layout({
             <Header data={settings} />
             <main className="main">
               {children}
+              <Footer />
             </main>
           </main>
         </Providers>
