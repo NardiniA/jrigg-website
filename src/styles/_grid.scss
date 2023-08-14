@@ -1,0 +1,134 @@
+.section {
+  padding: 110px 0 50px;
+
+  @media (min-width: 768px) {
+    padding: 130px 0 70px;
+  }
+
+  &-header {
+    margin-bottom: 3rem;
+    text-align: center;
+
+    &-title {
+      font-family: var(--serif-font);
+      font-style: normal;
+      font-weight: normal;
+      font-size: 2.5rem;
+      line-height: 1.5;
+      color: var(--white-color);
+      margin-bottom: 0.5rem;
+    }
+
+    &-subtitle {
+      display: block;
+      font-family: var(--body-font);
+      color: var(--white-alt);
+      font-style: normal;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+  }
+
+  &-sm {
+    padding: 70px 0;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 0.75rem;
+
+  @media (min-width: 576px) {
+    max-width: 540px;
+  }
+
+  @media (min-width: 768px) {
+    max-width: 720px;
+  }
+
+  @media (min-width: 992px) {
+    max-width: 750px;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 930px;
+  }
+
+  @media (min-width: 1440px) {
+    max-width: 1110px;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  > * {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
+.column {
+  width: 100%;
+}
+
+.column-three-quarter {
+  @media screen and (min-width: 768px) {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+
+  @media screen and (min-width: 992px) {
+    width: 75%;
+  }
+}
+
+.column-two-thirds {
+  @media screen and (min-width: 768px) {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+
+  @media screen and (min-width: 992px) {
+    width: 66.666666%;
+  }
+}
+
+.column-half {
+  @media screen and (min-width: 768px) {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+}
+
+.column-third {
+  @media screen and (min-width: 768px) {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+
+  @media screen and (min-width: 992px) {
+    width: 33.333333%;
+  }
+}
+
+.column-quarter {
+  @media screen and (min-width: 768px) {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+
+  @media screen and (min-width: 992px) {
+    width: 25%;
+  }
+}
