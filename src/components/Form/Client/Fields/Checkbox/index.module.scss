@@ -1,0 +1,84 @@
+.field {
+  display: block;
+  margin-bottom: 1.5rem;
+
+  label {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+
+    &:hover {
+      .field-checkmark {
+        background-color: var(--primary-lighter);
+      }
+    }
+
+    input {
+      visibility: hidden;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+      position: relative;
+      margin: 0;
+      top: 2px;
+      display: inline;
+      padding: 0;
+      box-sizing: border-box;
+
+      &:checked + .field-checkmark {
+        background-color: var(--secondary-colour);
+
+        i {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+
+    .field-checkmark {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.5rem;
+      height: 1.5rem;
+      background-color: var(--primary-light);
+      border: 1px solid transparent;
+      border-radius: 4px;
+      transition-duration: 0.4s;
+      transition-timing-function: ease;
+      color: var(--white-colour);
+
+      i,
+      svg {
+        font-size: 1rem;
+        width: 1rem;
+        height: 1rem;
+        line-height: 1;
+        color: inherit;
+        fill: currentColor;
+        stroke: currentColor;
+        opacity: 0;
+        visibility: hidden;
+        transition-duration: 0.4s;
+      }
+    }
+
+    .field-label {
+      margin-left: 1rem;
+      user-select: none;
+      display: inline-block;
+      line-height: inherit;
+      color: var(--white-alt);
+      font-family: var(--body-font);
+      font-weight: 500;
+      font-size: 1rem;
+      line-height: 1.5;
+
+      > span {
+        color: var(--error-colour);
+      }
+    }
+  }
+}

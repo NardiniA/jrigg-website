@@ -1,0 +1,47 @@
+.button {
+  position: absolute;
+  left: 30px;
+  bottom: 72px;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: var(--secondary-colour);
+  color: var(--white-colour);
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  outline: 0;
+  z-index: 90;
+  font-family: var(--body-font);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in;
+
+  @media screen and (min-width: 992px) {
+    padding: 40px;
+    width: 210px;
+    text-align: center;
+    left: 0;
+    bottom: 0;
+    background: none;
+    font-size: 1rem;
+    color: var(--secondary-colour);
+  }
+
+  &:hover {
+    color: var(--white-colour);
+  }
+
+  i {
+    font-size: 1rem;
+    line-height: 1;
+    color: inherit;
+    margin-right: 0.5rem;
+
+    @media screen and (min-width: 992px) {
+      font-size: 1.25rem;
+      margin-right: 0.75rem;
+    }
+  }
+}

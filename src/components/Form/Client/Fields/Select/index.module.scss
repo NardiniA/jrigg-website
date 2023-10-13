@@ -1,0 +1,83 @@
+.field {
+  display: block;
+  margin-bottom: 1.5rem;
+
+  label {
+    font-family: var(--body-font);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+    color: var(--white-alt);
+    display: block;
+
+    span {
+      color: var(--error-colour);
+    }
+  }
+
+  &-select {
+    display: block;
+    position: relative;
+    padding: 0;
+    margin: 0 0 0.5rem;
+
+    select {
+      appearance: none;
+      text-indent: 0.01px;
+      text-overflow: "";
+      margin: 0;
+      vertical-align: middle;
+      width: 100%;
+    }
+
+    &::after {
+      border-bottom: 2px solid var(--white-alt);
+      border-right: 2px solid var(--white-alt);
+      content: "";
+      display: block;
+      height: 8px;
+      width: 8px;
+      margin-top: -7px;
+      pointer-events: none;
+      position: absolute;
+      right: 2.4rem;
+      top: 50%;
+      transition: all 0.15s ease-in-out;
+      transform-origin: 66% 66%;
+      transform: rotate(45deg);
+    }
+  }
+
+  input,
+  textarea,
+  select {
+    display: block;
+    height: 4rem;
+    padding: 1rem 1.75rem;
+    outline: 0;
+    font-size: 1rem;
+    line-height: 2rem;
+    max-width: 100%;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    appearance: none;
+    width: 100%;
+    margin: 0;
+    font-family: var(--body-font);
+    background-color: var(--primary-light);
+    color: var(--white-alt);
+    margin-bottom: 0.5rem;
+  }
+
+  textarea {
+    min-height: 180px;
+  }
+
+  &-error {
+    display: block;
+    color: var(--error-colour);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}

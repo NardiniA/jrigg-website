@@ -5,7 +5,10 @@ import { draftMode } from "next/dist/client/components/headers";
 
 export type TransportProps = { collection: string, query?: Query };
 
-export type GetProps = { draftable?: boolean };
+export type GetProps = { 
+  draftable?: boolean;
+  options?: RequestInit;
+};
 
 class QueryResult {
   constructor(private data: any) {}
@@ -42,7 +45,7 @@ class Transport {
       encodeURIComponent(!!args?.draftable ? draftMode().isEnabled : false)
     );
 
-    const response = await fetch(req);
+    const response = await fetch(req, args?.options);
 
     if (!response.ok)
       throw new Error(`Failed to fetch - ${this.collection}`, {

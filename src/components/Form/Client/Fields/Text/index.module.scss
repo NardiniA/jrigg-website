@@ -1,0 +1,56 @@
+.field {
+  display: block;
+  margin-bottom: 1.5rem;
+
+  label {
+    font-family: var(--body-font);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+    color: var(--white-alt);
+    display: block;
+
+    span {
+      color: var(--error-colour);
+    }
+  }
+
+  input, textarea, select {
+    display: block;
+    height: 4rem;
+    padding: 1rem 1.75rem;
+    outline: 0;
+    font-size: 1rem;
+    line-height: 2rem;
+    max-width: 100%;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    appearance: none;
+    width: 100%;
+    margin: 0;
+    font-family: var(--body-font);
+    background-color: var(--primary-light);
+    color: var(--white-alt);
+    margin-bottom: 0.5rem;
+  }
+
+  textarea {
+    min-height: 180px;
+  }
+
+  &-desc {
+    display: block;
+    color: var(--white-alt);
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+  
+  &-error {
+    display: block;
+    color: var(--error-colour);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}

@@ -36,7 +36,7 @@ export interface Page {
       }[];
     };
     intro?: {
-      slider?: {
+      slider: {
         media: string | Media;
         id?: string;
       }[];
@@ -44,12 +44,6 @@ export interface Page {
   };
   sections?: (
     | {
-        header: {
-          title: string;
-          description?: {
-            [k: string]: unknown;
-          }[];
-        };
         associates: {
           name: string;
           url?: string;
@@ -151,6 +145,7 @@ export interface Media {
   project?: string | Project;
   categories?: string[] | Category[];
   poster: string | Media;
+  placeholder?: string;
   prefix?: string;
   updatedAt: string;
   createdAt: string;
@@ -173,6 +168,13 @@ export interface Project {
   gallery: {
     gallery: {
       media: string | Media;
+      info: "none" | "caption" | "sidebar";
+      sidebar: {
+        [k: string]: unknown;
+      }[];
+      caption: {
+        [k: string]: unknown;
+      }[];
       id?: string;
     }[];
   };
@@ -198,12 +200,12 @@ export interface Form {
         defaultValue?: string;
         admin: {
           size:
-            | "lg-12"
-            | "lg-9 tab-12"
-            | "lg-8 tab-12"
-            | "lg-6 tab-12"
-            | "lg-4 tab-12"
-            | "lg-3 tab-12";
+            | "column"
+            | "column-three-quarter"
+            | "column-two-thirds"
+            | "column-half"
+            | "column-third"
+            | "column-quarter";
           rules: {
             required: {
               value?: boolean;
@@ -234,12 +236,12 @@ export interface Form {
         defaultValue?: string;
         admin: {
           size:
-            | "lg-12"
-            | "lg-9 tab-12"
-            | "lg-8 tab-12"
-            | "lg-6 tab-12"
-            | "lg-4 tab-12"
-            | "lg-3 tab-12";
+            | "column"
+            | "column-three-quarter"
+            | "column-two-thirds"
+            | "column-half"
+            | "column-third"
+            | "column-quarter";
           rules: {
             required: {
               value?: boolean;
@@ -273,12 +275,12 @@ export interface Form {
         }[];
         admin: {
           size:
-            | "lg-12"
-            | "lg-9 tab-12"
-            | "lg-8 tab-12"
-            | "lg-6 tab-12"
-            | "lg-4 tab-12"
-            | "lg-3 tab-12";
+            | "column"
+            | "column-three-quarter"
+            | "column-two-thirds"
+            | "column-half"
+            | "column-third"
+            | "column-quarter";
           placeholder?: string;
           rules: {
             required: {
@@ -296,12 +298,12 @@ export interface Form {
         label: string;
         admin: {
           size:
-            | "lg-12"
-            | "lg-9 tab-12"
-            | "lg-8 tab-12"
-            | "lg-6 tab-12"
-            | "lg-4 tab-12"
-            | "lg-3 tab-12";
+            | "column"
+            | "column-three-quarter"
+            | "column-two-thirds"
+            | "column-half"
+            | "column-third"
+            | "column-quarter";
           placeholder?: string;
           rules: {
             required: {
@@ -333,12 +335,12 @@ export interface Form {
         defaultValue?: number;
         admin: {
           size:
-            | "lg-12"
-            | "lg-9 tab-12"
-            | "lg-8 tab-12"
-            | "lg-6 tab-12"
-            | "lg-4 tab-12"
-            | "lg-3 tab-12";
+            | "column"
+            | "column-three-quarter"
+            | "column-two-thirds"
+            | "column-half"
+            | "column-third"
+            | "column-quarter";
           rules: {
             required: {
               value?: boolean;
@@ -367,12 +369,12 @@ export interface Form {
         label: string;
         admin: {
           size:
-            | "lg-12"
-            | "lg-9 tab-12"
-            | "lg-8 tab-12"
-            | "lg-6 tab-12"
-            | "lg-4 tab-12"
-            | "lg-3 tab-12";
+            | "column"
+            | "column-three-quarter"
+            | "column-two-thirds"
+            | "column-half"
+            | "column-third"
+            | "column-quarter";
           default?: boolean;
           rules: {
             required: {
@@ -398,12 +400,12 @@ export interface Form {
         label: string;
         admin: {
           size:
-            | "lg-12"
-            | "lg-9 tab-12"
-            | "lg-8 tab-12"
-            | "lg-6 tab-12"
-            | "lg-4 tab-12"
-            | "lg-3 tab-12";
+            | "column"
+            | "column-three-quarter"
+            | "column-two-thirds"
+            | "column-half"
+            | "column-third"
+            | "column-quarter";
           placeholder?: string;
           rules: {
             required: {
@@ -541,12 +543,12 @@ export interface RecruitmentSetting {
           defaultValue?: string;
           admin: {
             size:
-              | "lg-12"
-              | "lg-9 tab-12"
-              | "lg-8 tab-12"
-              | "lg-6 tab-12"
-              | "lg-4 tab-12"
-              | "lg-3 tab-12";
+              | "column"
+              | "column-three-quarter"
+              | "column-two-thirds"
+              | "column-half"
+              | "column-third"
+              | "column-quarter";
             rules: {
               required: {
                 value?: boolean;
@@ -577,12 +579,12 @@ export interface RecruitmentSetting {
           defaultValue?: string;
           admin: {
             size:
-              | "lg-12"
-              | "lg-9 tab-12"
-              | "lg-8 tab-12"
-              | "lg-6 tab-12"
-              | "lg-4 tab-12"
-              | "lg-3 tab-12";
+              | "column"
+              | "column-three-quarter"
+              | "column-two-thirds"
+              | "column-half"
+              | "column-third"
+              | "column-quarter";
             rules: {
               required: {
                 value?: boolean;
@@ -616,12 +618,12 @@ export interface RecruitmentSetting {
           }[];
           admin: {
             size:
-              | "lg-12"
-              | "lg-9 tab-12"
-              | "lg-8 tab-12"
-              | "lg-6 tab-12"
-              | "lg-4 tab-12"
-              | "lg-3 tab-12";
+              | "column"
+              | "column-three-quarter"
+              | "column-two-thirds"
+              | "column-half"
+              | "column-third"
+              | "column-quarter";
             placeholder?: string;
             rules: {
               required: {
@@ -639,12 +641,12 @@ export interface RecruitmentSetting {
           label: string;
           admin: {
             size:
-              | "lg-12"
-              | "lg-9 tab-12"
-              | "lg-8 tab-12"
-              | "lg-6 tab-12"
-              | "lg-4 tab-12"
-              | "lg-3 tab-12";
+              | "column"
+              | "column-three-quarter"
+              | "column-two-thirds"
+              | "column-half"
+              | "column-third"
+              | "column-quarter";
             placeholder?: string;
             rules: {
               required: {
@@ -676,12 +678,12 @@ export interface RecruitmentSetting {
           defaultValue?: number;
           admin: {
             size:
-              | "lg-12"
-              | "lg-9 tab-12"
-              | "lg-8 tab-12"
-              | "lg-6 tab-12"
-              | "lg-4 tab-12"
-              | "lg-3 tab-12";
+              | "column"
+              | "column-three-quarter"
+              | "column-two-thirds"
+              | "column-half"
+              | "column-third"
+              | "column-quarter";
             rules: {
               required: {
                 value?: boolean;
@@ -710,12 +712,12 @@ export interface RecruitmentSetting {
           label: string;
           admin: {
             size:
-              | "lg-12"
-              | "lg-9 tab-12"
-              | "lg-8 tab-12"
-              | "lg-6 tab-12"
-              | "lg-4 tab-12"
-              | "lg-3 tab-12";
+              | "column"
+              | "column-three-quarter"
+              | "column-two-thirds"
+              | "column-half"
+              | "column-third"
+              | "column-quarter";
             default?: boolean;
             rules: {
               required: {
@@ -741,12 +743,12 @@ export interface RecruitmentSetting {
           label: string;
           admin: {
             size:
-              | "lg-12"
-              | "lg-9 tab-12"
-              | "lg-8 tab-12"
-              | "lg-6 tab-12"
-              | "lg-4 tab-12"
-              | "lg-3 tab-12";
+              | "column"
+              | "column-three-quarter"
+              | "column-two-thirds"
+              | "column-half"
+              | "column-third"
+              | "column-quarter";
             placeholder?: string;
             rules: {
               required: {

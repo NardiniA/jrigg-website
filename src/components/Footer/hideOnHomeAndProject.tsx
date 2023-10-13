@@ -3,16 +3,17 @@
 import { Children } from "@/types/children";
 import { usePathname } from "next/navigation";
 
-const HideOnHome: React.FC<Children> = ({ children }) => {
+const HideOnHomeAndProject: React.FC<Children> = ({ children }) => {
   const pathname = usePathname();
 
   const isHome = pathname === "/" || pathname === "/home";
+  const isProject = pathname?.includes("/gallery/");
 
-  if (!isHome) return (
+  if (!(isHome || isProject)) return (
     <>{children}</>
   );
 
   return null;
 }
 
-export default HideOnHome;
+export default HideOnHomeAndProject;

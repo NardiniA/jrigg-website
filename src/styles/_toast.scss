@@ -1,0 +1,133 @@
+/* ------------------------------------------------------------------- 
+ * ## Form Modal
+ * ------------------------------------------------------------------- */
+:root {
+  --toastify-color-light: var(--white-colour);
+  --toastify-color-info: var(--white-colour);
+  --toastify-color-dark: var(--secondary-colour);
+  --toastify-color-success: var(--secondary-colour);
+  --toastify-color-warning: var(--secondary-colour);
+  --toastify-color-error: var(--error-colour);
+  --toastify-color-transparent: rgba(255, 255, 255, 0.7);
+
+  --toastify-icon-color-info: var(--primary-darker);
+  --toastify-icon-color-success: var(--white-colour);
+  --toastify-icon-color-warning: var(--white-colour);
+  --toastify-icon-color-error: var(--white-colour);
+
+  --toastify-toast-width: 400px;
+  --toastify-toast-background: var(--white-colour);
+  --toastify-font-family: var(--body-font);
+
+  //Used only for colored theme
+  --toastify-text-color-light: var(--primary-dark);
+  --toastify-text-color-info: var(--primary-dark);
+  --toastify-text-color-success: var(--white-colour);
+  --toastify-text-color-warning: var(--white-colour);
+  --toastify-text-color-error: var(--white-colour);
+
+  --toastify-spinner-color: var(--primary-darker);
+  --toastify-spinner-color-empty-area: rgba(0, 0, 0, 0.25);
+
+  // Used when no type is provided
+  // toast("**hello**")
+  --toastify-color-progress-light: rgba(0, 0, 0, 0.4);
+
+  // Used when no type is provided
+  --toastify-color-progress-dark: var(--secondary-dark);
+  --toastify-color-progress-info: var(--secondary-dark);
+  --toastify-color-progress-success: var(--secondary-dark);
+  --toastify-color-progress-warning: var(--secondary-dark);
+  --toastify-color-progress-error: var(--error-dark);
+}
+
+.Toastify {
+  &__toast {
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+
+    @media screen and (max-width: 480px) {
+      margin-bottom: 0.75rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &-body {
+      padding: 0 20px 0 0;
+      margin: 0;
+      flex: initial;
+
+      div > div {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          margin-top: 0;
+        }
+
+        *:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    &-container {
+      padding: 1rem;
+    }
+
+    &-icon {
+      margin-right: 0.75rem;
+    }
+
+    &--info {
+      background-color: var(--toastify-color-info);
+    }
+
+    &--success {
+      background-color: var(--toastify-color-success);
+      --toastify-spinner-color: var(--white-colour);
+      --toastify-spinner-color-empty-area: rgba(255, 255, 255, 0.25);
+      --toastify-text-color-light: var(--white-colour);
+    }
+
+    &--error {
+      background-color: var(--toastify-color-error);
+      --toastify-spinner-color: var(--white-colour);
+      --toastify-spinner-color-empty-area: rgba(255, 255, 255, 0.25);
+      --toastify-text-color-light: var(--white-colour);
+    }
+  }
+
+  &__close {
+    &-button {
+      display: inline-block;
+      position: absolute;
+      top: 1.6rem;
+      right: 1.2rem;
+      line-height: 1;
+      width: 16px;
+      height: 16px;
+      margin: 0;
+      color: var(--toastify-text-color-light);
+
+      &:hover {
+        box-shadow: none;
+        background-color: transparent;
+
+        svg {
+          box-shadow: none;
+          background-color: transparent;
+        }
+      }
+
+      svg {
+        fill: currentColor;
+        color: inherit;
+      }
+    }
+  }
+}

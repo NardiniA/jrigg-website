@@ -1,9 +1,9 @@
 import styles from "./index.module.scss";
-import HideOnHome from "./hideOnHome";
 import Link from "next/link";
+import HideOnHomeAndProject from "./hideOnHomeAndProject";
 
 const Footer: React.FC = () => (
-  <HideOnHome>
+  <HideOnHomeAndProject>
     <footer className={styles["footer"]}>
       <Link href="https://antonionardini.com" className={styles["footer-link"]}>
         Antonio Nardini
@@ -23,7 +23,7 @@ const Footer: React.FC = () => (
         </Link>
       </div>
     </footer>
-  </HideOnHome>
+  </HideOnHomeAndProject>
 );
 
 export default Footer;

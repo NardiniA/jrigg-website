@@ -1,0 +1,85 @@
+.field {
+  display: block;
+  margin-bottom: 2rem;
+
+  label {
+    height: 3rem;
+    width: auto;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--primary-light);
+    cursor: pointer;
+    line-height: 1;
+    font-size: 1rem;
+    transition-duration: 0.4s;
+    transition-timing-function: ease-in-out;
+    margin-bottom: 0.5rem;
+    margin-right: 1rem;
+
+    i, svg {
+      margin-right: 0.5rem;
+      font-size: 1.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      line-height: 1;
+    }
+
+    &:hover {
+      background-color: var(--primary-colour);
+    }
+  }
+
+  input {
+    display: none;
+  }
+
+  &-container { 
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  &-value {
+    display: block;
+
+    button {
+      display: inline-block;
+      border: none;
+      background: none;
+      color: var(--error-colour);
+      padding: 0.5rem;
+      margin-left: 0.5rem;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition-duration: 0.4s;
+      transition-timing-function: ease;
+
+      i, svg {
+        font-size: 1rem;
+        width: 1rem;
+        height: 1rem;
+        line-height: 1;
+        color: inherit;
+        fill: currentColor;
+        stroke: currentColor;
+      }
+
+      &:hover {
+        background-color: var(--primary-light);
+      }
+    }
+  }
+  
+  &-error {
+    display: block;
+    color: var(--error-colour);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}

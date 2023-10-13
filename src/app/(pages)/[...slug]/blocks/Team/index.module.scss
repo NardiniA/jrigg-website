@@ -1,0 +1,64 @@
+.member {
+  margin-bottom: 50px;
+
+  &-image {
+    border-radius: 9999px;
+    overflow: hidden;
+
+    img {
+      width: 150px;
+      max-width: none;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 9999px;
+    }
+
+    &-wrapper {
+      width: 150px;
+      height: 150px;
+      position: relative;
+      margin: 0 auto 25px;
+    }
+  }
+
+  &-info {
+    display: block;
+    text-align: center;
+
+    h5 {
+      font-weight: 100;
+      font-size: 24px;
+      line-height: 1.5;
+      font-family: var(--serif-font);
+      text-transform: capitalize;
+      color: var(--white-colour);
+      margin: 0 0 5px;
+      letter-spacing: 0.05em;
+    }
+
+    h6 {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--white-alt);
+      margin: 0;
+    }
+  }
+
+  &-col {
+    @media (min-width: 576px) {
+      flex: 0 0 auto;
+      width: 50%;
+    }
+
+    @media (min-width: 992px) {
+      flex: 0 0 auto;
+      width: 25%;
+    }
+
+    @media (min-width: 1200px) {
+      flex: 0 0 auto;
+      width: 25%;
+    }
+  }
+}

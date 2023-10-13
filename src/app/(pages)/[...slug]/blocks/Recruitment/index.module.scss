@@ -1,0 +1,113 @@
+.recruitment {
+  &-row {
+    align-items: stretch;
+  }
+
+  &-col {
+    margin-bottom: 1.5rem;
+
+    @media screen and (min-width: 768px) {
+      flex: 0 0 auto;
+      width: 50%;
+    }
+
+    @media screen and (min-width: 1200px) {
+      flex: 0 0 auto;
+      width: 33.333333%;
+    }
+  }
+
+  &-card {
+    height: 100%;
+    padding: 2rem;
+    background-color: var(--primary-colour);
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    border-radius: 0.5rem;
+    overflow: hidden;
+
+    h2,
+    p,
+    footer {
+      width: 100%;
+    }
+
+    h2 {
+      margin-bottom: 1.25rem;
+      display: block;
+      color: var(--secondary-colour);
+
+      &:hover {
+        color: var(--white-colour);
+      }
+
+      a {
+        color: inherit;
+      }
+    }
+
+    p {
+      display: block;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      color: var(--white-alt);
+    }
+
+    &-footer {
+      margin-top: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 100%;
+
+      span {
+        display: inline-flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        padding: 0.35rem 0.5rem;
+        border-radius: 4px;
+        overflow: hidden;
+        font-size: 14px;
+        margin: 0;
+        line-height: 1;
+        background-color: var(--white-alt);
+        color: var(--primary-dark);
+      }
+
+      a {
+        display: inline-flex;
+        margin-left: auto;
+        justify-self: flex-end;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 1rem;
+        line-height: 1;
+
+        i,
+        svg {
+          display: inline-block;
+          margin-left: 0.25rem;
+          width: 1.25rem;
+          height: 1.25rem;
+          font-size: 1.25rem;
+          line-height: 1;
+          fill: currentColor;
+          color: inherit;
+          stroke: currentColor;
+          transition-duration: 0.4s;
+          transition-property: transform;
+        }
+
+        &:hover {
+          i,
+          svg {
+            transform: translateX(0.25rem);
+          }
+        }
+      }
+    }
+  }
+}

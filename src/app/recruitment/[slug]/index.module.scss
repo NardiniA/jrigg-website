@@ -1,0 +1,66 @@
+.recruitment {
+  &-content {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-bottom: 1.5rem;
+    }
+  }
+  
+  &-share {
+    padding-top: 3rem;
+
+    &-title {
+      text-align: center;
+    }
+
+    &-list {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin: 0;
+        padding: 0;
+
+        a {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 1rem;
+          border-radius: 8px;
+          background-color: var(--primary-light);
+          font-size: 2rem;
+          line-height: 1;
+          margin: 0.5rem;
+          width: 4rem;
+          height: 4rem;
+          min-height: 4rem;
+          min-width: 4rem;
+
+          i,
+          svg {
+            color: inherit;
+            fill: currentColor;
+            stroke: none;
+            transition-duration: 0.4s;
+            transition-timing-function: ease;
+          }
+
+          &:hover {
+            svg,
+            i {
+              color: var(--white-colour);
+            }
+          }
+        }
+      }
+    }
+  }
+}

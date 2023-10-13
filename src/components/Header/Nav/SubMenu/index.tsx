@@ -1,11 +1,6 @@
 import styles from "../index.module.scss";
 import { classes } from "@/utilities/classes";
 import { parseLink } from "@/utilities/parseLink";
-import {
-  Collapsible,
-  CollapsibleToggler,
-  CollapsibleContent,
-} from "@faceless-ui/collapsibles";
 import Link from "next/link";
 import { NavTypes } from "../types";
 import { ContentContainer, Toggler, Wrapper } from "./Client";
@@ -32,10 +27,10 @@ const SubMenu: React.FC<{
           </Toggler>
           <ContentContainer>
             <ul className={styles["dropdown-menu"]}>
-              {item?.subMenu?.sublink?.map(({ link }, idx) => (
+              {item?.subMenu?.sublink?.map(({ link, id }, idx) => (
                 <li
                   className={styles["dropdown-item"]}
-                  key={link?.type || "submenu_drop" + idx}
+                  key={(id || idx) + (link?.type || "submenu_drop") + idx}
                 >
                   <Link
                     href={parseLink(link)}
