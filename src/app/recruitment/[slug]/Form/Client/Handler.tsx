@@ -104,7 +104,7 @@ const Handler: React.FC<{ settings: RecruitmentSetting }> = ({
       
       return;
     },
-    [watch]
+    [watch, fields]
   );
 
   if (!!fields?.length)

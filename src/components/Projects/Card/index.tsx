@@ -4,8 +4,9 @@ import { classes } from "@/utilities/classes";
 import { truncateString } from "@/utilities/truncateString";
 import { Media, Project } from "@/types/payload-types";
 import Image from "next/image";
+import { Fragment } from "react";
 
-type ProjectCard = {
+export type ProjectCard = {
   card: {
     details: {
       thumbnail: {
@@ -21,7 +22,7 @@ const Card: React.FC<ProjectCard> = ({ card: { name, slug, details: { descriptio
   const href = `/gallery/${slug}`;
 
   return (
-    <>
+    <Fragment key={slug + "_project_card_key_" + index}>
       <article
         className={classes(
           styles["project"],
@@ -67,7 +68,7 @@ const Card: React.FC<ProjectCard> = ({ card: { name, slug, details: { descriptio
       <div
         className={classes(styles["separator"], last ? styles["isLast"] : "")}
       ></div>
-    </>
+    </Fragment>
   );
 }
 

@@ -39,7 +39,7 @@ const Container: React.FC<ContainerProps> = ({
 
         <main className={classes(styles["gallery__grid"], "content")}>
           {media?.map((m, idx) => (
-              <div className={styles["gallery__column"]}>
+              <div className={styles["gallery__column"]} key={m?.id + "_gallery_col_" + idx}>
                 <Toggler
                   slug={m?.id}
                   htmlElement="article"

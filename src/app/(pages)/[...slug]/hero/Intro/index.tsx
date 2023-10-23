@@ -11,20 +11,20 @@ const Intro: React.FC<{
   hero: Page["hero"]["intro"];
   breadcrumbs: Page["breadcrumbs"];
 }> = ({ hero, breadcrumbs }) => {
-  if (!hero) return null;
-  const slider = hero?.slider;
-
   const [activeSlide, setActiveSlide] = useState<number>(0);
+  const slider = hero?.slider;
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (activeSlide === slider.length - 1) {
+      if (!!slider?.length && activeSlide === slider.length - 1) {
         setActiveSlide(0);
       } else setActiveSlide(activeSlide + 1);
     }, 7500);
 
     return () => clearTimeout(timer);
-  }, [activeSlide]);
+  }, [activeSlide, slider?.length]);
+
+  if (!hero) return null;
 
   if (slider?.length)
     return (
