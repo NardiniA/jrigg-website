@@ -5,6 +5,7 @@ import Lightbox from "../components/Gallery/Lightbox";
 import { Container as ModalContainer, Provider, Toggler } from "../components/Client/Modal";
 import Gallery from "./Gallery";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 async function getProjectCategory(
   slug: string,
@@ -36,29 +37,47 @@ async function getProjectCategory(
 
   const [project, categories] = await parallel.get(options);
 
-  return {
-    media: await new Transport({
-      collection: "media",
-      query: {
-        where: {
-          and: [
-            {
-              project: {
-                equals: project?.toSingle()?.id,
-              },
+  if (!project?.toSingle() || !categories?.toSingle()) return {
+    project: null,
+    categories: null,
+  }
+
+  const projectId = project?.toSingle()?.id;
+  const categoryId = categories?.toSingle()?.id;
+
+  const mediaClient = new Transport({
+    collection: "media",
+    query: {
+      where: {
+        and: [
+          {
+            project: {
+              equals: projectId,
             },
-            {
-              categories: {
-                in: [categories?.toSingle()?.id],
-              },
+          },
+          {
+            categories: {
+              in: [categoryId],
             },
-          ],
-        },
+          },
+        ],
       },
-    }).get({ ...options, options: { next: { tags: [project?.value("id")] } } }),
+    },
+  });
+
+  const mediaDocs = await mediaClient.get({ draftable: true, options: { next: { tags: [projectId] } } });
+
+  if (!mediaDocs) return {
+    media: null,
+  }
+
+  const result = {
+    media: mediaDocs,
     project: project?.toSingle(),
     categories: categories?.toSingle(),
   };
+
+  return result
 }
 
 export default async function Page({
@@ -72,7 +91,11 @@ export default async function Page({
     { draftable: true }
   );
 
+  if (!media || !project || !categories) return null;
+
   const mediaList: GalleryMedia[] = media?.value("docs") as GalleryMedia[];
+
+  if (!mediaList?.length) return notFound();
 
   return (
     <Provider transTime={400}>
@@ -111,6 +134,8 @@ export async function generateStaticParams() {
   );
 
   const [projects, categories] = await parallel.get({ draftable: false });
+
+  if (!projects || !categories) throw new Error(`Cannot get projects and/or categories`);
 
   const paths = projects
     ?.value("docs")
