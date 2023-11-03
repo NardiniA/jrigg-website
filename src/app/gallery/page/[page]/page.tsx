@@ -1,5 +1,6 @@
 import Banner from "@/app/(pages)/[...slug]/hero/Banner";
 import Column from "@/components/Projects/Column";
+import Pagination from "@/components/Projects/Pagination";
 import { getSettings } from "@/lib/getSettings";
 import Transport from "@/lib/transport";
 import { SegmentProps } from "@/types/segment-props";
@@ -10,7 +11,7 @@ function getProjects(limit: number, query?: Query) {
   return new Transport({
     collection: "projects",
     query: {
-      where: { complete: { equals: true } },
+      where: { complete: { equals: true }, _status: { equals: "published", }, },
       limit,
       ...query,
     }
@@ -20,7 +21,7 @@ function getProjects(limit: number, query?: Query) {
 export default async function Page({ params }: SegmentProps<"page">) {
   const pageNumber = parseInt(params && params.page) || 1;
   const limit = (await getSettings({ draftable: true }))?.config?.projectsPerPage || 6;
-  const projects = (await getProjects(limit, { page: +pageNumber }).get({ draftable: true })).value("docs");
+  const projects = (await getProjects(limit, { page: +pageNumber }).get({ draftable: true }));
 
   const bannerData = {
     hero: {
@@ -46,8 +47,8 @@ export default async function Page({ params }: SegmentProps<"page">) {
   return (
     <>
       <Banner {...bannerData} />
-      <Column docs={projects} />
-      
+      <Column docs={projects?.value("docs")} />
+      <Pagination page={projects?.value()} />
     </>
   )
 }
