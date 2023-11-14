@@ -29,6 +29,7 @@ export default async function Page({ params: { category } }: SegmentProps<"categ
           in: [categories?.id],
         },
       },
+      sort: "filename",
       limit: 100_000,
     },
   }).get({ draftable: true, options: { next: { tags: [categories?.id] } } });

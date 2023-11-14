@@ -11,7 +11,7 @@ const Contact: React.FC<{
       <div className="row">
         {!!maps && (
           <div className="column-half">
-            <div className={styles["map"]}>
+            <div className={styles["map"]} data-aos="fade-right">
               <div className={styles["map-outer"]}>
                 <div className={styles["gmap-canvas"]}>
                   <iframe
@@ -26,7 +26,9 @@ const Contact: React.FC<{
         )}
         {!!details?.length && (
           <div className="column-half">
-            <RichText content={details} className={styles["contact-box"]} />
+            <div data-aos="fade-left">
+              <RichText content={details} className={styles["contact-box"]} />
+            </div>
           </div>
         )}
       </div>

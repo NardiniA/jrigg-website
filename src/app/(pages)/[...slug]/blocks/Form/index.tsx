@@ -9,7 +9,7 @@ const Form: React.FC<{ section: { form: Form }; priority: boolean }> = ({
   if (id)
     return (
       <section className="section">
-        <div className="container">
+        <div className="container" data-aos="fade-up">
           <EmbeddedForm formId={id} />
         </div>
       </section>

@@ -1,5 +1,6 @@
 import "./globals.scss";
 import "boxicons/css/boxicons.min.css";
+import "aos/dist/aos.css";
 import { inter, pt_serif } from "./fonts";
 import { classes } from "@/utilities/classes";
 import type { Children } from "@/types/children";
@@ -31,6 +32,20 @@ export default async function layout({ children }: Children) {
               <Footer />
             </main>
           </main>
+          
+          <noscript>
+            <style type="text/css">
+              {`
+                [data-aos] {
+                  transition-duration: 0 !important;
+                  transition-delay: 0 !important;
+                  transform: translate(0, 0) !important;
+                  -webkit-transform: translate(0, 0) !important;
+                  opacity: 1 !important;
+                }
+              `}
+            </style>
+          </noscript>
         </Providers>
       </body>
     </html>

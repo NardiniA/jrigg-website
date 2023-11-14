@@ -69,6 +69,11 @@ export async function generateStaticParams() {
   const transport = new Transport({
     collection: "projects",
     query: {
+      where: {
+        _status: {
+          equals: "published",
+        },
+      },
       limit: 100_000,
     },
   });

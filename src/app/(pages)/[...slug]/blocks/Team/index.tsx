@@ -10,11 +10,11 @@ const Team: React.FC<{ section: any, priority: boolean; }> = async ({
     return (
       <section className="section">
         <div className="container">
-          <div className="row">
+          <div className="row" id="team-row">
             {!!header && <SectionHeader header={header} />}
             {members?.map(
               async ({ name, position, image, id }: any, idx: number) => (
-                <article className={styles["member-col"]} key={id + idx}>
+                <article className={styles["member-col"]} data-aos="fade-up" data-aos-delay={String(200 * (idx + 1))} data-aos-anchor="#team-row" key={id + idx}>
                   <div className={styles["member"]}>
                     {!!image && (
                       <div className={styles["member-image-wrapper"]}>

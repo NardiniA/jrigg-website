@@ -22,10 +22,12 @@ const TextImage: React.FC<{ section: any, priority: boolean }> = async ({ sectio
                 styles["text__image-text"]
               )}
             >
-              <RichText
-                content={section?.text}
-                className={styles["text__image-content"]}
-              />
+              <div data-aos={section?.reversed ? "fade-left" : "fade-right"}>
+                <RichText
+                  content={section?.text}
+                  className={styles["text__image-content"]}
+                />
+              </div>
             </div>
           )}
           {!!section?.image?.url && (
@@ -35,7 +37,7 @@ const TextImage: React.FC<{ section: any, priority: boolean }> = async ({ sectio
                 styles["text__image-image"]
               )}
             >
-              <div>
+              <div data-aos={section?.reversed ? "fade-right" : "fade-left"}>
                 <Image
                   src={section?.image?.url as string}
                   alt={section?.image?.alt as string}

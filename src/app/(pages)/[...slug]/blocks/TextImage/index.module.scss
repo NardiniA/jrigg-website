@@ -1,6 +1,6 @@
 .text__image {
   &.reversed {
-    .text__image-text div {
+    .text__image-text > div > div {
       padding: 45px 0.5rem 0;
 
       @media screen and (min-width: 992px) {
@@ -42,7 +42,7 @@
       padding-bottom: 0;
     }
 
-    div {
+    > div > div {
       padding-right: 0;
 
       @media screen and (min-width: 992px) {
@@ -60,7 +60,7 @@
   &-text {
     position: relative;
 
-    div {
+    > div > div {
       padding: 0 0.5rem 45px;
 
       @media screen and (min-width: 992px) {

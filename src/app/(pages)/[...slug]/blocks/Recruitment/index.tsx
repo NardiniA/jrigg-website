@@ -33,13 +33,13 @@ const Recruitment: React.FC<{
     return (
       <section className="section">
         <div className="container">
-          <div className={classes("row", styles["recruitment-row"])}>
+          <div className={classes("row", styles["recruitment-row"])} id="recruitment-row">
             {jobs?.map(({ title, description, slug, id }: any, idx: number) => {
               const href = `/recruitment/${slug}`;
 
               return (
                 <div className={styles["recruitment-col"]} key={id + "recruitment_card" + idx}>
-                  <article className={styles["recruitment-card"]}>
+                  <article className={styles["recruitment-card"]} data-aos="fade-up" data-aos-delay={String(200 * (idx + 1))} data-aos-anchor="#recruitment-row">
                     {title && (
                       <h2 className="h3">
                         <Link href={href}>{title}</Link>

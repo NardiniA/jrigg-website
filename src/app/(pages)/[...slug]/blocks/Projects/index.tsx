@@ -29,7 +29,9 @@ const Projects: React.FC<{
 
   return (
     <section className="section">
-      <div className="container"></div>
+      <div className="container">
+        <p>No projects available. Please try again later.</p>
+      </div>
     </section>
   );
 };

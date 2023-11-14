@@ -28,6 +28,7 @@ const Card: React.FC<ProjectCard> = ({ card: { name, slug, details: { descriptio
           styles["project"],
           index % 2 === 0 ? "" : styles["left"]
         )}
+        data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
       >
         <div className={styles["project-image"]}>
           <Image
