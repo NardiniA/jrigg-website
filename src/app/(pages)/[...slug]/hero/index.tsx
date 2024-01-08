@@ -3,8 +3,8 @@ import { Page } from "@/types/payload-types";
 import dynamic from "next/dynamic";
 
 const sections: DynamicSelector = {
-  banner: dynamic(() => import("./Banner")),
-  intro: dynamic(() => import("./Intro")),
+  banner: dynamic(() => import("./Banner"), { ssr: false }),
+  intro: dynamic(() => import("./Intro"), { ssr: false }),
 }
 
 const Hero: React.FC<{ hero: Page["hero"], breadcrumbs: Page["breadcrumbs"] }> = ({ hero, breadcrumbs }) => {

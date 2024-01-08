@@ -14,15 +14,15 @@ import SubmitButton from "./components/SubmitButton";
 import RenderFields from "./components/RenderFields";
 
 export const fieldOptions: DynamicSelector = {
-  text: dynamic(() => import("./Fields/Text")),
-  tel: dynamic(() => import("./Fields/Text")),
-  email: dynamic(() => import("./Fields/Text")),
-  phone: dynamic(() => import("./Fields/Text")),
-  number: dynamic(() => import("./Fields/Text")),
-  select: dynamic(() => import("./Fields/Select")),
-  textarea: dynamic(() => import("./Fields/Textarea")),
-  checkbox: dynamic(() => import("./Fields/Checkbox")),
-  message: dynamic(() => import("./Fields/Message")),
+  text: dynamic(() => import("./Fields/Text"), { ssr: false }),
+  tel: dynamic(() => import("./Fields/Text"), { ssr: false }),
+  email: dynamic(() => import("./Fields/Text"), { ssr: false }),
+  phone: dynamic(() => import("./Fields/Text"), { ssr: false }),
+  number: dynamic(() => import("./Fields/Text"), { ssr: false }),
+  select: dynamic(() => import("./Fields/Select"), { ssr: false }),
+  textarea: dynamic(() => import("./Fields/Textarea"), { ssr: false }),
+  checkbox: dynamic(() => import("./Fields/Checkbox"), { ssr: false }),
+  message: dynamic(() => import("./Fields/Message"), { ssr: false }),
 };
 
 const Handler: React.FC<{ form: Form }> = ({ form: {

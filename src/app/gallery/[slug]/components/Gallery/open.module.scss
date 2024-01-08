@@ -12,21 +12,17 @@
   align-items: center;
   justify-content: center;
   outline: 0;
-  z-index: 90;
   font-family: var(--body-font);
   cursor: pointer;
   transition-duration: 0.3s;
   transition-timing-function: ease-in;
 
   @media screen and (min-width: 992px) {
-    padding: 40px;
-    width: 210px;
-    text-align: center;
-    left: 0;
-    bottom: 0;
-    background: none;
-    font-size: 1rem;
-    color: var(--secondary-colour);
+    left: auto;
+    bottom: 30px;
+    right: 30px;
+    font-size: 16px;
+    padding: 0.75rem 1rem;
   }
 
   &:hover {

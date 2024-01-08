@@ -5,9 +5,9 @@ import { DynamicSelector } from "@/types/dynamic-selector";
 import Social from "./Social";
 
 const links: DynamicSelector = {
-  link: dynamic(() => import("./NavLink")),
-  subMenu: dynamic(() => import("./SubMenu")),
-  auto: dynamic(() => import("./AutoMenu")),
+  link: dynamic(() => import("./NavLink"), { ssr: false }),
+  subMenu: dynamic(() => import("./SubMenu"), { ssr: false }),
+  auto: dynamic(() => import("./AutoMenu"), { ssr: false }),
 };
 
 const Nav: React.FC<{ navigation: Setting["navigation"]["items"], social: Setting["social"]["social"] }> = ({ navigation, social }) => {
