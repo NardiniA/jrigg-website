@@ -47,11 +47,6 @@ const Intro: React.FC<{
                   quality={100}
                   placeholder={!!image?.placeholder ? "blur" : undefined}
                   blurDataURL={`data:image/${image?.placeholder}`}
-                  sizes="(max-width: 449px) 33vw,
-                              (min-width: 450px) 50vw,
-                              (min-width: 768px) 70vw,
-                              (min-width: 992px) 85vw,
-                              (min-width: 1200px) 100vw"
                   fill
                 />
               </div>
