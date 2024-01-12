@@ -78,7 +78,6 @@ export async function generateMetadata(): Promise<Metadata> {
     creator: metadata?.author,
     publisher: metadata?.author,
     keywords: metadata?.keywords.map(({ name }: { name: string }) => name),
-    colorScheme: "light",
     applicationName: "J. Rigg Construction",
     openGraph: {
       title: metadata?.title,
@@ -101,17 +100,11 @@ export async function generateMetadata(): Promise<Metadata> {
       nocache: true,
     },
     // TODO: Add icons list
-    themeColor: "#023815",
     twitter: {
       card: "summary_large_image",
       title: metadata?.title,
       description: metadata?.description,
       images: [newImage?.url as string],
-    },
-    viewport: {
-      width: "device-width",
-      initialScale: 1,
-      minimumScale: 1,
     },
     appleWebApp: {
       title: settings?.sitename,
@@ -126,4 +119,16 @@ export async function generateMetadata(): Promise<Metadata> {
     assets: [newImage?.url?.replace(newImage?.filename as string, "") as string],
     category: "construction",
   };
+}
+
+export function generateViewport() {
+  return {
+    themeColor: "#023815",
+    colorScheme: "light",
+    viewport: {
+      width: "device-width",
+      initialScale: 1,
+      minimumScale: 1,
+    },
+  }
 }
