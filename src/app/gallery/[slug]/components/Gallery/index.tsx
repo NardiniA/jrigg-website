@@ -19,6 +19,7 @@ const Gallery: React.FC<{ project: Project }> = async ({ project }) => {
         },
       },
       limit: 100_000,
+      sort: "filename",
     },
   });
 
