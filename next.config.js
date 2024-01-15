@@ -2,8 +2,6 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    loader: "custom",
-    loaderFile: "./src/lib/loader.ts",
     remotePatterns: [
       {
         protocol: "https",
