@@ -59,7 +59,7 @@ const Container: React.FC<ContainerProps> = ({
                   </div>
                   <div className={styles["gallery__item-data"]}>
                     <MediaTitle med={m}>
-                      {m?.title || m?.alt}
+                    {m?.title || m?.alt} - {m?.filename?.match(/\d+/)?.at(-1)}
                     </MediaTitle>
                   </div>
                 </Toggler>

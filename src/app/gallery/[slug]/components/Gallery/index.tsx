@@ -30,7 +30,14 @@ const Gallery: React.FC<{ project: Project }> = async ({ project }) => {
     })
   ).value("docs");
 
-  if (!!media?.length)
+  if (!!media?.length) {
+    const m = media?.sort((a, b) => {
+      const aImg = a?.filename?.match(/\d+/)?.at(-1) as string;
+      const bImg = b?.filename?.match(/\d+/)?.at(-1) as string;
+
+      return +aImg - +bImg;
+    });
+
     return (
       <Container>
         <Modal
@@ -39,7 +46,7 @@ const Gallery: React.FC<{ project: Project }> = async ({ project }) => {
           className={styles["gallery"]}
           lockBodyScroll={false}
         >
-          <GalleryContainer media={media}>
+          <GalleryContainer media={m}>
             <h3>{project?.name}</h3>
 
             <Toggler slug="project-gallery">
@@ -65,6 +72,7 @@ const Gallery: React.FC<{ project: Project }> = async ({ project }) => {
         ))}
       </Container>
     );
+  }
 
   return null;
 };
