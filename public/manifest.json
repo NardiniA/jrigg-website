@@ -1,0 +1,8 @@
+{
+  "name": "J Rigg Construction",
+  "theme_color": "#f07f7f",
+  "background_color": "#fff0f0",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/"
+}
