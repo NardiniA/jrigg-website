@@ -5,12 +5,11 @@ import Image from "next/image";
 import styles from "./index.module.scss";
 import { classes } from "@/utilities/classes";
 import { Media, Page } from "@/types/payload-types";
-import { loader } from "@/lib/loader";
 
 const Intro: React.FC<{
   hero: Page["hero"]["intro"];
   breadcrumbs: Page["breadcrumbs"];
-}> = ({ hero, breadcrumbs }) => {
+}> = ({ hero }) => {
   const [activeSlide, setActiveSlide] = useState<number>(0);
   const slider = hero?.slider;
 
