@@ -23,7 +23,7 @@ const Events: React.FC = () => {
       closeMenu();
       window.removeEventListener("resize", closeMenu);
     }
-  }, [pathname, searchParams]);
+  }, [pathname, searchParams]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return null;
 }

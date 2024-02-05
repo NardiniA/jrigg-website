@@ -74,7 +74,7 @@ const Handler: React.FC<{ form: Form }> = ({ form: {
       });
       return;
     }
-  }, [watch]);
+  }, [watch]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!!fields?.length) return (
     <form

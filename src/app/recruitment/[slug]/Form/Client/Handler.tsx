@@ -104,7 +104,7 @@ const Handler: React.FC<{ settings: RecruitmentSetting }> = ({
       
       return;
     },
-    [watch, fields]
+    [watch, fields] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   if (!!fields?.length)
