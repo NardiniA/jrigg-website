@@ -4,6 +4,8 @@ import Image from "next/image";
 import styles from "../index.module.scss";
 import VideoPlayer from "./VideoPlayer";
 import { Media } from "@/types/payload-types";
+import { classes } from "@/utilities/classes";
+import BoxNav from "./BoxNav";
 
 const LightPoster: React.FC<{ poster: Media; alt: string }> = ({ poster, alt }) => {
   return (
@@ -28,7 +30,9 @@ const LightPoster: React.FC<{ poster: Media; alt: string }> = ({ poster, alt }) 
 const Lightbox: React.FC<{
   media: GalleryMedia;
   showProjectTitle?: boolean;
-}> = ({ media, showProjectTitle = false }) => {
+  prev: string | null;
+  next: string | null;
+}> = ({ media, showProjectTitle = false, prev, next }) => {
   const ProjectTitle = ({ children }: { children: React.ReactNode }) => {
     if (showProjectTitle && media?.project) {
       const proj =
@@ -66,7 +70,7 @@ const Lightbox: React.FC<{
             loading="lazy"
           />
         ) : (
-          <VideoPlayer 
+          <VideoPlayer
             url={`${process.env.CLOUDFRONT_MEDIA_URL}/${media?.filename}`}
             controls={true}
             playing={false}
@@ -74,7 +78,15 @@ const Lightbox: React.FC<{
           />
         )}
 
-        <Toggler slug={media?.id}>Close</Toggler>
+        <div className={styles["nav-btn-container"]}>
+          <BoxNav currSlug={media?.id} dirSlug={prev} className={classes(styles["nav-btn"], !prev ? styles["disabled"] : "")}>
+            <i className='bx bx-chevron-left'></i>
+          </BoxNav>
+          <Toggler slug={media?.id}>Close</Toggler>
+          <BoxNav currSlug={media?.id} dirSlug={next} className={classes(styles["nav-btn"], !next ? styles["disabled"] : "")}>
+            <i className='bx bx-chevron-right'></i>
+          </BoxNav>
+        </div>
       </main>
     </Modal>
   );

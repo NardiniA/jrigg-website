@@ -52,7 +52,13 @@ export default async function Page({ params: { category } }: SegmentProps<"categ
 
         <ModalContainer>
           {mediaList?.map((m, idx) => (
-            <Lightbox media={m} showProjectTitle key={m?.id + "_modal_category_" + idx} />
+            <Lightbox
+              media={m}
+              showProjectTitle
+              key={m?.id + "_modal_category_" + idx}
+              prev={idx !== 0 ? mediaList[idx - 1]?.id : null}
+              next={(mediaList?.length - 1) !== idx ? mediaList[idx + 1]?.id : null}
+            />
           ))}
         </ModalContainer>
       </main>

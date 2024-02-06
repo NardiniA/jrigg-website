@@ -68,7 +68,12 @@ const Gallery: React.FC<{ project: Project }> = async ({ project }) => {
         </Modal>
 
         {media?.map((m, idx) => (
-          <Lightbox media={m} key={m?.id + "_modal_" + idx} />
+          <Lightbox 
+            media={m} 
+            key={m?.id + "_modal_" + idx} 
+            prev={idx !== 0 ? media[idx - 1]?.id : null}
+            next={(media?.length - 1) !== idx ? media[idx + 1]?.id : null}
+          />
         ))}
       </Container>
     );
