@@ -1,0 +1,75 @@
+.project-header {
+  text-align: center;
+  padding: 48px 0;
+
+  @media screen and (min-width: 992px) {
+    padding: 0;
+  }
+
+  &__container {
+    .column-three-quarter {
+      @media screen and (min-width: 992px) {
+        width: 75%;
+      }
+    }
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+
+    @media screen and (min-width: 768px) {
+      font-size: 3.5rem;
+    }
+
+    @media screen and (min-width: 992px) {
+      font-size: 4rem;
+    }
+  }
+
+  p {
+    @media screen and (min-width: 768px) {
+      font-size: 18px;
+    }
+  }
+
+  &__categories {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 1rem;
+
+    @media screen and (min-width: 992px) {
+      gap: 1.5rem
+    }
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 8px;
+      background-color: var(--white-colour);
+      color: var(--secondary-colour);
+      border-radius: 12px;
+      height: 56px;
+      width: 100%;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: var(--secondary-colour);
+        color: var(--white-colour);
+      }
+
+      &.active,
+      &.active:hover,
+      &.active:focus,
+      &.active:active {
+        background-color: var(--secondary-colour);
+        color: var(--white-colour);
+      }
+    }
+  }
+}

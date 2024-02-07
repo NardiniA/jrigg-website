@@ -1,12 +1,11 @@
-import type { GetProps } from "@/lib/transport";
-import Transport from "@/lib/transport";
-import type { Project } from "@/types/payload-types";
-import type { SegmentProps } from "@/types/segment-props";
+import { SegmentProps } from "@/types/segment-props";
+import Transport, { type GetProps } from "@/lib/transport";
 import { notFound } from "next/navigation";
+import { GalleryMedia } from "./components/Gallery";
 import { Provider } from "./components/Client/Modal";
-import Gallery from "./components/Gallery";
-import Slider from "./components/Slider";
-import OpenButton from "./components/Gallery/OpenButton";
+import { Project } from "@/types/payload-types";
+import ProjectHeader from "./components/ProjectHeader";
+import Gallery from "@/components/Projects/Gallery";
 
 async function getProject(slug: string, options?: GetProps) {
   return await new Transport({
@@ -21,48 +20,47 @@ async function getProject(slug: string, options?: GetProps) {
   }).get(options);
 }
 
+async function getMedia(id: string) {
+  const media: GalleryMedia[] = (await new Transport({
+    collection: "media",
+    query: {
+      where: {
+        project: {
+          equals: id,
+        },
+      },
+      limit: 100_000,
+      sort: "filename",
+    },
+  }).get({
+    draftable: true,
+    options: { next: { tags: [id] } },
+  }))?.value("docs");
+
+  return media?.sort((a, b) => {
+    const aImg = a?.filename?.match(/\d+/)?.at(-1) as string;
+    const bImg = b?.filename?.match(/\d+/)?.at(-1) as string;
+
+    return +aImg - +bImg;
+  });
+}
+
 export default async function Page({ params: { slug } }: SegmentProps) {
-  const project: Project = (
-    await getProject(slug, { draftable: true })
-  ).toSingle();
+  const project: Project = (await getProject(slug, { draftable: true })).toSingle();
 
   if (!project) return notFound();
 
-  const featured: Project["gallery"]["gallery"] = [
-    {
-      id: "jPXw7plycMVB",
-      media: project?.details?.thumbnail,
-      info: "sidebar",
-      caption: [],
-      sidebar: [
-        {
-          type: "h1",
-          children: [
-            {
-              text: project?.name,
-            },
-          ],
-        },
-        {
-          children: [
-            {
-              text: project?.details?.description,
-            },
-          ],
-        },
-      ],
-    },
-    ...project?.gallery?.gallery,
-  ];
+  const media = await getMedia(project?.id);
 
   return (
     <Provider transTime={400}>
-      <Slider featured={featured} />
-      <Gallery project={project} />
+      <article className="section">
+        <ProjectHeader project={project} />
 
-      <OpenButton /> 
+        <Gallery media={media} />
+      </article>
     </Provider>
-  );
+  )
 }
 
 export async function generateStaticParams() {
@@ -90,16 +88,16 @@ export async function generateMetadata({ params: { slug } }: SegmentProps) {
 
   return {
     title: project?.name,
-    description: project?.details?.description,
+    description: project?.description,
     openGraph: {
       title: project?.name,
-      description: project?.details?.description,
+      description: project?.description,
       url: `/gallery/${project?.slug}`,
     },
     twitter: {
       card: "summary_large_image",
       title: project?.name,
-      description: project?.details?.description,
+      description: project?.description,
     },
   };
 }

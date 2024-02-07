@@ -16,10 +16,10 @@ export interface Config {
     users: User;
     media: Media;
     forms: Form;
-    "form-submissions": FormSubmission;
+    'form-submissions': FormSubmission;
   };
   globals: {
-    "recruitment-settings": RecruitmentSetting;
+    'recruitment-settings': RecruitmentSetting;
     settings: Setting;
   };
 }
@@ -28,7 +28,7 @@ export interface Page {
   title: string;
   slug?: string;
   hero: {
-    type: "banner" | "intro";
+    type: 'banner' | 'intro';
     banner?: {
       title: string;
       description?: {
@@ -44,82 +44,82 @@ export interface Page {
   };
   sections?: (
     | {
-        associates: {
-          name: string;
-          url?: string;
-          image?: string | Media;
-          id?: string;
-        }[];
+      associates: {
+        name: string;
+        url?: string;
+        image?: string | Media;
         id?: string;
-        blockName?: string;
-        blockType: "associates-block";
-      }
+      }[];
+      id?: string;
+      blockName?: string;
+      blockType: 'associates-block';
+    }
     | {
-        maps: string;
-        details: {
+      maps: string;
+      details: {
+        [k: string]: unknown;
+      }[];
+      id?: string;
+      blockName?: string;
+      blockType: 'contact';
+    }
+    | {
+      form: string | Form;
+      id?: string;
+      blockName?: string;
+      blockType: 'embed-form';
+    }
+    | {
+      type: 'automatic' | 'manual';
+      complete: 'wip' | 'complete' | 'both';
+      manual: string[] | Project[];
+      id?: string;
+      blockName?: string;
+      blockType: 'projects-list';
+    }
+    | {
+      type: 'automatic' | 'manual';
+      manual: string[] | Recruitment[];
+      id?: string;
+      blockName?: string;
+      blockType: 'recruitment-list';
+    }
+    | {
+      align: 'left' | 'center' | 'right';
+      richText: {
+        [k: string]: unknown;
+      }[];
+      id?: string;
+      blockName?: string;
+      blockType: 'rich-text-block';
+    }
+    | {
+      header: {
+        title: string;
+        description?: {
           [k: string]: unknown;
         }[];
-        id?: string;
-        blockName?: string;
-        blockType: "contact";
-      }
-    | {
-        form: string | Form;
-        id?: string;
-        blockName?: string;
-        blockType: "embed-form";
-      }
-    | {
-        type: "automatic" | "manual";
-        complete: "wip" | "complete" | "both";
-        manual: string[] | Project[];
-        id?: string;
-        blockName?: string;
-        blockType: "projects-list";
-      }
-    | {
-        type: "automatic" | "manual";
-        manual: string[] | Recruitment[];
-        id?: string;
-        blockName?: string;
-        blockType: "recruitment-list";
-      }
-    | {
-        align: "left" | "center" | "right";
-        richText: {
-          [k: string]: unknown;
-        }[];
-        id?: string;
-        blockName?: string;
-        blockType: "rich-text-block";
-      }
-    | {
-        header: {
-          title: string;
-          description?: {
-            [k: string]: unknown;
-          }[];
-        };
-        members: {
-          name: string;
-          position: string;
-          image: string | Media;
-          id?: string;
-        }[];
-        id?: string;
-        blockName?: string;
-        blockType: "team-block";
-      }
-    | {
-        text: {
-          [k: string]: unknown;
-        }[];
+      };
+      members: {
+        name: string;
+        position: string;
         image: string | Media;
-        reversed?: boolean;
         id?: string;
-        blockName?: string;
-        blockType: "text-image-block";
-      }
+      }[];
+      id?: string;
+      blockName?: string;
+      blockType: 'team-block';
+    }
+    | {
+      text: {
+        [k: string]: unknown;
+      }[];
+      image: string | Media;
+      reversed?: boolean;
+      id?: string;
+      blockName?: string;
+      blockType: 'text-image-block';
+    }
   )[];
   fullTitle?: string;
   breadcrumbs?: {
@@ -136,7 +136,7 @@ export interface Page {
   };
   updatedAt: string;
   createdAt: string;
-  _status?: "draft" | "published";
+  _status?: 'draft' | 'published';
 }
 export interface Media {
   id: string;
@@ -161,26 +161,12 @@ export interface Project {
   name: string;
   slug?: string;
   complete?: boolean;
-  details: {
-    description: string;
-    thumbnail: string | Media;
-  };
-  gallery: {
-    gallery: {
-      media: string | Media;
-      info: "none" | "caption" | "sidebar";
-      sidebar: {
-        [k: string]: unknown;
-      }[];
-      caption: {
-        [k: string]: unknown;
-      }[];
-      id?: string;
-    }[];
-  };
+  description: string;
+  thumbnail: string | Media;
+  categories: string[] | Category[];
   updatedAt: string;
   createdAt: string;
-  _status?: "draft" | "published";
+  _status?: 'draft' | 'published';
 }
 export interface Category {
   id: string;
@@ -194,253 +180,253 @@ export interface Form {
   title: string;
   fields?: (
     | {
-        name: string;
+      name: string;
+      label: string;
+      placeholder?: string;
+      defaultValue?: string;
+      admin: {
+        size:
+        | 'column'
+        | 'column-three-quarter'
+        | 'column-two-thirds'
+        | 'column-half'
+        | 'column-third'
+        | 'column-quarter';
+        rules: {
+          required: {
+            value?: boolean;
+            message: string;
+          };
+          minLength: {
+            value?: number;
+            message: string;
+          };
+          maxLength: {
+            value?: number;
+            message: string;
+          };
+          pattern: {
+            value?: string;
+            message: string;
+          };
+        };
+      };
+      id?: string;
+      blockName?: string;
+      blockType: 'text';
+    }
+    | {
+      name: string;
+      label: string;
+      placeholder?: string;
+      defaultValue?: string;
+      admin: {
+        size:
+        | 'column'
+        | 'column-three-quarter'
+        | 'column-two-thirds'
+        | 'column-half'
+        | 'column-third'
+        | 'column-quarter';
+        rules: {
+          required: {
+            value?: boolean;
+            message: string;
+          };
+          minLength: {
+            value?: number;
+            message: string;
+          };
+          maxLength: {
+            value?: number;
+            message: string;
+          };
+          pattern: {
+            value?: string;
+            message: string;
+          };
+        };
+      };
+      id?: string;
+      blockName?: string;
+      blockType: 'textarea';
+    }
+    | {
+      name: string;
+      label: string;
+      options?: {
         label: string;
+        value: string;
+        id?: string;
+      }[];
+      admin: {
+        size:
+        | 'column'
+        | 'column-three-quarter'
+        | 'column-two-thirds'
+        | 'column-half'
+        | 'column-third'
+        | 'column-quarter';
         placeholder?: string;
-        defaultValue?: string;
-        admin: {
-          size:
-            | "column"
-            | "column-three-quarter"
-            | "column-two-thirds"
-            | "column-half"
-            | "column-third"
-            | "column-quarter";
-          rules: {
-            required: {
-              value?: boolean;
-              message: string;
-            };
-            minLength: {
-              value?: number;
-              message: string;
-            };
-            maxLength: {
-              value?: number;
-              message: string;
-            };
-            pattern: {
-              value?: string;
-              message: string;
-            };
+        rules: {
+          required: {
+            value?: boolean;
+            message: string;
           };
         };
-        id?: string;
-        blockName?: string;
-        blockType: "text";
-      }
+      };
+      id?: string;
+      blockName?: string;
+      blockType: 'select';
+    }
     | {
-        name: string;
-        label: string;
+      name: string;
+      label: string;
+      admin: {
+        size:
+        | 'column'
+        | 'column-three-quarter'
+        | 'column-two-thirds'
+        | 'column-half'
+        | 'column-third'
+        | 'column-quarter';
         placeholder?: string;
-        defaultValue?: string;
-        admin: {
-          size:
-            | "column"
-            | "column-three-quarter"
-            | "column-two-thirds"
-            | "column-half"
-            | "column-third"
-            | "column-quarter";
-          rules: {
-            required: {
-              value?: boolean;
-              message: string;
-            };
-            minLength: {
-              value?: number;
-              message: string;
-            };
-            maxLength: {
-              value?: number;
-              message: string;
-            };
-            pattern: {
-              value?: string;
-              message: string;
-            };
+        rules: {
+          required: {
+            value?: boolean;
+            message: string;
+          };
+          minLength: {
+            value?: number;
+            message: string;
+          };
+          maxLength: {
+            value?: number;
+            message: string;
+          };
+          pattern: {
+            value?: string;
+            message: string;
           };
         };
-        id?: string;
-        blockName?: string;
-        blockType: "textarea";
-      }
+      };
+      id?: string;
+      blockName?: string;
+      blockType: 'email';
+    }
     | {
-        name: string;
-        label: string;
-        options?: {
-          label: string;
-          value: string;
-          id?: string;
-        }[];
-        admin: {
-          size:
-            | "column"
-            | "column-three-quarter"
-            | "column-two-thirds"
-            | "column-half"
-            | "column-third"
-            | "column-quarter";
-          placeholder?: string;
-          rules: {
-            required: {
-              value?: boolean;
-              message: string;
-            };
+      name: string;
+      label: string;
+      placeholder?: string;
+      defaultValue?: number;
+      admin: {
+        size:
+        | 'column'
+        | 'column-three-quarter'
+        | 'column-two-thirds'
+        | 'column-half'
+        | 'column-third'
+        | 'column-quarter';
+        rules: {
+          required: {
+            value?: boolean;
+            message: string;
+          };
+          min: {
+            value?: number;
+            message: string;
+          };
+          max: {
+            value?: number;
+            message: string;
+          };
+          pattern: {
+            value?: string;
+            message: string;
           };
         };
-        id?: string;
-        blockName?: string;
-        blockType: "select";
-      }
+      };
+      id?: string;
+      blockName?: string;
+      blockType: 'number';
+    }
     | {
-        name: string;
-        label: string;
-        admin: {
-          size:
-            | "column"
-            | "column-three-quarter"
-            | "column-two-thirds"
-            | "column-half"
-            | "column-third"
-            | "column-quarter";
-          placeholder?: string;
-          rules: {
-            required: {
-              value?: boolean;
-              message: string;
-            };
-            minLength: {
-              value?: number;
-              message: string;
-            };
-            maxLength: {
-              value?: number;
-              message: string;
-            };
-            pattern: {
-              value?: string;
-              message: string;
-            };
+      name: string;
+      label: string;
+      admin: {
+        size:
+        | 'column'
+        | 'column-three-quarter'
+        | 'column-two-thirds'
+        | 'column-half'
+        | 'column-third'
+        | 'column-quarter';
+        default?: boolean;
+        rules: {
+          required: {
+            value?: boolean;
+            message: string;
           };
         };
-        id?: string;
-        blockName?: string;
-        blockType: "email";
-      }
+      };
+      id?: string;
+      blockName?: string;
+      blockType: 'checkbox';
+    }
     | {
-        name: string;
-        label: string;
+      message: {
+        [k: string]: unknown;
+      }[];
+      id?: string;
+      blockName?: string;
+      blockType: 'message';
+    }
+    | {
+      name: string;
+      label: string;
+      admin: {
+        size:
+        | 'column'
+        | 'column-three-quarter'
+        | 'column-two-thirds'
+        | 'column-half'
+        | 'column-third'
+        | 'column-quarter';
         placeholder?: string;
-        defaultValue?: number;
-        admin: {
-          size:
-            | "column"
-            | "column-three-quarter"
-            | "column-two-thirds"
-            | "column-half"
-            | "column-third"
-            | "column-quarter";
-          rules: {
-            required: {
-              value?: boolean;
-              message: string;
-            };
-            min: {
-              value?: number;
-              message: string;
-            };
-            max: {
-              value?: number;
-              message: string;
-            };
-            pattern: {
-              value?: string;
-              message: string;
-            };
+        rules: {
+          required: {
+            value?: boolean;
+            message: string;
+          };
+          minLength: {
+            value?: number;
+            message: string;
+          };
+          maxLength: {
+            value?: number;
+            message: string;
+          };
+          pattern: {
+            value?: string;
+            message: string;
           };
         };
-        id?: string;
-        blockName?: string;
-        blockType: "number";
-      }
-    | {
-        name: string;
-        label: string;
-        admin: {
-          size:
-            | "column"
-            | "column-three-quarter"
-            | "column-two-thirds"
-            | "column-half"
-            | "column-third"
-            | "column-quarter";
-          default?: boolean;
-          rules: {
-            required: {
-              value?: boolean;
-              message: string;
-            };
-          };
-        };
-        id?: string;
-        blockName?: string;
-        blockType: "checkbox";
-      }
-    | {
-        message: {
-          [k: string]: unknown;
-        }[];
-        id?: string;
-        blockName?: string;
-        blockType: "message";
-      }
-    | {
-        name: string;
-        label: string;
-        admin: {
-          size:
-            | "column"
-            | "column-three-quarter"
-            | "column-two-thirds"
-            | "column-half"
-            | "column-third"
-            | "column-quarter";
-          placeholder?: string;
-          rules: {
-            required: {
-              value?: boolean;
-              message: string;
-            };
-            minLength: {
-              value?: number;
-              message: string;
-            };
-            maxLength: {
-              value?: number;
-              message: string;
-            };
-            pattern: {
-              value?: string;
-              message: string;
-            };
-          };
-        };
-        id?: string;
-        blockName?: string;
-        blockType: "tel";
-      }
+      };
+      id?: string;
+      blockName?: string;
+      blockType: 'tel';
+    }
   )[];
   submitButtonLabel?: string;
-  confirmationType?: "message" | "redirect";
+  confirmationType?: 'message' | 'redirect';
   confirmationMessage: {
     [k: string]: unknown;
   }[];
   redirect?: {
-    type?: "reference" | "custom";
+    type?: 'reference' | 'custom';
     reference: {
       value: string | Page;
-      relationTo: "pages";
+      relationTo: 'pages';
     };
     url: string;
   };
@@ -458,7 +444,7 @@ export interface Form {
   }[];
   updatedAt: string;
   createdAt: string;
-  _status?: "draft" | "published";
+  _status?: 'draft' | 'published';
 }
 export interface Recruitment {
   id: string;
@@ -470,7 +456,7 @@ export interface Recruitment {
   }[];
   updatedAt: string;
   createdAt: string;
-  _status?: "draft" | "published";
+  _status?: 'draft' | 'published';
 }
 export interface Application {
   id: string;
@@ -495,7 +481,7 @@ export interface User {
   fullname?: string;
   firstname: string;
   lastname: string;
-  roles: ("editor" | "admin")[];
+  roles: ('editor' | 'admin')[];
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -537,245 +523,245 @@ export interface RecruitmentSetting {
   fields: {
     fields?: (
       | {
-          name: string;
+        name: string;
+        label: string;
+        placeholder?: string;
+        defaultValue?: string;
+        admin: {
+          size:
+          | 'column'
+          | 'column-three-quarter'
+          | 'column-two-thirds'
+          | 'column-half'
+          | 'column-third'
+          | 'column-quarter';
+          rules: {
+            required: {
+              value?: boolean;
+              message: string;
+            };
+            minLength: {
+              value?: number;
+              message: string;
+            };
+            maxLength: {
+              value?: number;
+              message: string;
+            };
+            pattern: {
+              value?: string;
+              message: string;
+            };
+          };
+        };
+        id?: string;
+        blockName?: string;
+        blockType: 'text';
+      }
+      | {
+        name: string;
+        label: string;
+        placeholder?: string;
+        defaultValue?: string;
+        admin: {
+          size:
+          | 'column'
+          | 'column-three-quarter'
+          | 'column-two-thirds'
+          | 'column-half'
+          | 'column-third'
+          | 'column-quarter';
+          rules: {
+            required: {
+              value?: boolean;
+              message: string;
+            };
+            minLength: {
+              value?: number;
+              message: string;
+            };
+            maxLength: {
+              value?: number;
+              message: string;
+            };
+            pattern: {
+              value?: string;
+              message: string;
+            };
+          };
+        };
+        id?: string;
+        blockName?: string;
+        blockType: 'textarea';
+      }
+      | {
+        name: string;
+        label: string;
+        options?: {
           label: string;
+          value: string;
+          id?: string;
+        }[];
+        admin: {
+          size:
+          | 'column'
+          | 'column-three-quarter'
+          | 'column-two-thirds'
+          | 'column-half'
+          | 'column-third'
+          | 'column-quarter';
           placeholder?: string;
-          defaultValue?: string;
-          admin: {
-            size:
-              | "column"
-              | "column-three-quarter"
-              | "column-two-thirds"
-              | "column-half"
-              | "column-third"
-              | "column-quarter";
-            rules: {
-              required: {
-                value?: boolean;
-                message: string;
-              };
-              minLength: {
-                value?: number;
-                message: string;
-              };
-              maxLength: {
-                value?: number;
-                message: string;
-              };
-              pattern: {
-                value?: string;
-                message: string;
-              };
+          rules: {
+            required: {
+              value?: boolean;
+              message: string;
             };
           };
-          id?: string;
-          blockName?: string;
-          blockType: "text";
-        }
+        };
+        id?: string;
+        blockName?: string;
+        blockType: 'select';
+      }
       | {
-          name: string;
-          label: string;
+        name: string;
+        label: string;
+        admin: {
+          size:
+          | 'column'
+          | 'column-three-quarter'
+          | 'column-two-thirds'
+          | 'column-half'
+          | 'column-third'
+          | 'column-quarter';
           placeholder?: string;
-          defaultValue?: string;
-          admin: {
-            size:
-              | "column"
-              | "column-three-quarter"
-              | "column-two-thirds"
-              | "column-half"
-              | "column-third"
-              | "column-quarter";
-            rules: {
-              required: {
-                value?: boolean;
-                message: string;
-              };
-              minLength: {
-                value?: number;
-                message: string;
-              };
-              maxLength: {
-                value?: number;
-                message: string;
-              };
-              pattern: {
-                value?: string;
-                message: string;
-              };
+          rules: {
+            required: {
+              value?: boolean;
+              message: string;
+            };
+            minLength: {
+              value?: number;
+              message: string;
+            };
+            maxLength: {
+              value?: number;
+              message: string;
+            };
+            pattern: {
+              value?: string;
+              message: string;
             };
           };
-          id?: string;
-          blockName?: string;
-          blockType: "textarea";
-        }
+        };
+        id?: string;
+        blockName?: string;
+        blockType: 'email';
+      }
       | {
-          name: string;
-          label: string;
-          options?: {
-            label: string;
-            value: string;
-            id?: string;
-          }[];
-          admin: {
-            size:
-              | "column"
-              | "column-three-quarter"
-              | "column-two-thirds"
-              | "column-half"
-              | "column-third"
-              | "column-quarter";
-            placeholder?: string;
-            rules: {
-              required: {
-                value?: boolean;
-                message: string;
-              };
+        name: string;
+        label: string;
+        placeholder?: string;
+        defaultValue?: number;
+        admin: {
+          size:
+          | 'column'
+          | 'column-three-quarter'
+          | 'column-two-thirds'
+          | 'column-half'
+          | 'column-third'
+          | 'column-quarter';
+          rules: {
+            required: {
+              value?: boolean;
+              message: string;
+            };
+            min: {
+              value?: number;
+              message: string;
+            };
+            max: {
+              value?: number;
+              message: string;
+            };
+            pattern: {
+              value?: string;
+              message: string;
             };
           };
-          id?: string;
-          blockName?: string;
-          blockType: "select";
-        }
+        };
+        id?: string;
+        blockName?: string;
+        blockType: 'number';
+      }
       | {
-          name: string;
-          label: string;
-          admin: {
-            size:
-              | "column"
-              | "column-three-quarter"
-              | "column-two-thirds"
-              | "column-half"
-              | "column-third"
-              | "column-quarter";
-            placeholder?: string;
-            rules: {
-              required: {
-                value?: boolean;
-                message: string;
-              };
-              minLength: {
-                value?: number;
-                message: string;
-              };
-              maxLength: {
-                value?: number;
-                message: string;
-              };
-              pattern: {
-                value?: string;
-                message: string;
-              };
+        name: string;
+        label: string;
+        admin: {
+          size:
+          | 'column'
+          | 'column-three-quarter'
+          | 'column-two-thirds'
+          | 'column-half'
+          | 'column-third'
+          | 'column-quarter';
+          default?: boolean;
+          rules: {
+            required: {
+              value?: boolean;
+              message: string;
             };
           };
-          id?: string;
-          blockName?: string;
-          blockType: "email";
-        }
+        };
+        id?: string;
+        blockName?: string;
+        blockType: 'checkbox';
+      }
       | {
-          name: string;
-          label: string;
+        message: {
+          [k: string]: unknown;
+        }[];
+        id?: string;
+        blockName?: string;
+        blockType: 'message';
+      }
+      | {
+        name: string;
+        label: string;
+        admin: {
+          size:
+          | 'column'
+          | 'column-three-quarter'
+          | 'column-two-thirds'
+          | 'column-half'
+          | 'column-third'
+          | 'column-quarter';
           placeholder?: string;
-          defaultValue?: number;
-          admin: {
-            size:
-              | "column"
-              | "column-three-quarter"
-              | "column-two-thirds"
-              | "column-half"
-              | "column-third"
-              | "column-quarter";
-            rules: {
-              required: {
-                value?: boolean;
-                message: string;
-              };
-              min: {
-                value?: number;
-                message: string;
-              };
-              max: {
-                value?: number;
-                message: string;
-              };
-              pattern: {
-                value?: string;
-                message: string;
-              };
+          rules: {
+            required: {
+              value?: boolean;
+              message: string;
+            };
+            minLength: {
+              value?: number;
+              message: string;
+            };
+            maxLength: {
+              value?: number;
+              message: string;
+            };
+            pattern: {
+              value?: string;
+              message: string;
             };
           };
-          id?: string;
-          blockName?: string;
-          blockType: "number";
-        }
-      | {
-          name: string;
-          label: string;
-          admin: {
-            size:
-              | "column"
-              | "column-three-quarter"
-              | "column-two-thirds"
-              | "column-half"
-              | "column-third"
-              | "column-quarter";
-            default?: boolean;
-            rules: {
-              required: {
-                value?: boolean;
-                message: string;
-              };
-            };
-          };
-          id?: string;
-          blockName?: string;
-          blockType: "checkbox";
-        }
-      | {
-          message: {
-            [k: string]: unknown;
-          }[];
-          id?: string;
-          blockName?: string;
-          blockType: "message";
-        }
-      | {
-          name: string;
-          label: string;
-          admin: {
-            size:
-              | "column"
-              | "column-three-quarter"
-              | "column-two-thirds"
-              | "column-half"
-              | "column-third"
-              | "column-quarter";
-            placeholder?: string;
-            rules: {
-              required: {
-                value?: boolean;
-                message: string;
-              };
-              minLength: {
-                value?: number;
-                message: string;
-              };
-              maxLength: {
-                value?: number;
-                message: string;
-              };
-              pattern: {
-                value?: string;
-                message: string;
-              };
-            };
-          };
-          id?: string;
-          blockName?: string;
-          blockType: "tel";
-        }
+        };
+        id?: string;
+        blockName?: string;
+        blockType: 'tel';
+      }
     )[];
   };
-  _status?: "draft" | "published";
+  _status?: 'draft' | 'published';
   updatedAt?: string;
   createdAt?: string;
 }
@@ -800,176 +786,176 @@ export interface Setting {
       name: string;
       url: string;
       icons:
-        | "bxl-kubernetes"
-        | "bxl-snapchat"
-        | "bxl-yelp"
-        | "bxl-discourse"
-        | "bxl-internet-explorer"
-        | "bxl-git"
-        | "bxl-creative-commons"
-        | "bxl-dev-to"
-        | "bxl-medium-old"
-        | "bxl-ok-ru"
-        | "bxl-yahoo"
-        | "bxl-amazon"
-        | "bxl-jsfiddle"
-        | "bxl-kickstarter"
-        | "bxl-blender"
-        | "bxl-firefox"
-        | "bxl-visa"
-        | "bxl-spring-boot"
-        | "bxl-product-hunt"
-        | "bxl-airbnb"
-        | "bxl-bootstrap"
-        | "bxl-quora"
-        | "bxl-soundcloud"
-        | "bxl-c-plus-plus"
-        | "bxl-markdown"
-        | "bxl-codepen"
-        | "bxl-flickr-square"
-        | "bxl-flickr"
-        | "bxl-wikipedia"
-        | "bxl-wordpress"
-        | "bxl-python"
-        | "bxl-stack-overflow"
-        | "bxl-baidu"
-        | "bxl-bing"
-        | "bxl-stripe"
-        | "bxl-shopify"
-        | "bxl-foursquare"
-        | "bxl-microsoft"
-        | "bxl-mailchimp"
-        | "bxl-digg"
-        | "bxl-redux"
-        | "bxl-edge"
-        | "bxl-dropbox"
-        | "bxl-google-cloud"
-        | "bxl-javascript"
-        | "bxl-joomla"
-        | "bxl-telegram"
-        | "bxl-zoom"
-        | "bxl-drupal"
-        | "bxl-microsoft-teams"
-        | "bxl-tux"
-        | "bxl-angular"
-        | "bxl-firebase"
-        | "bxl-spotify"
-        | "bxl-opera"
-        | "bxl-unsplash"
-        | "bxl-vuejs"
-        | "bxl-chrome"
-        | "bxl-trello"
-        | "bxl-wix"
-        | "bxl-whatsapp-square"
-        | "bxl-500px"
-        | "bxl-react"
-        | "bxl-deviantart"
-        | "bxl-nodejs"
-        | "bxl-digitalocean"
-        | "bxl-django"
-        | "bxl-less"
-        | "bxl-sass"
-        | "bxl-invision"
-        | "bxl-periscope"
-        | "bxl-squarespace"
-        | "bxl-html5"
-        | "bxl-ebay"
-        | "bxl-magento"
-        | "bxl-css3"
-        | "bxl-paypal"
-        | "bxl-mastercard"
-        | "bxl-dailymotion"
-        | "bxl-windows"
-        | "bxl-tumblr"
-        | "bxl-google-plus"
-        | "bxl-android"
-        | "bxl-skype"
-        | "bxl-twitter"
-        | "bxl-vimeo"
-        | "bxl-github"
-        | "bxl-messenger"
-        | "bxl-blogger"
-        | "bxl-discord"
-        | "bxl-facebook-square"
-        | "bxl-medium"
-        | "bxl-pinterest"
-        | "bxl-bitcoin"
-        | "bxl-youtube"
-        | "bxl-vk"
-        | "bxl-pocket"
-        | "bxl-linkedin"
-        | "bxl-google-plus-circle"
-        | "bxl-whatsapp"
-        | "bxl-reddit"
-        | "bxl-apple"
-        | "bxl-dribbble"
-        | "bxl-behance"
-        | "bxl-instagram"
-        | "bxl-facebook"
-        | "bxl-twitch"
-        | "bxl-slack-old"
-        | "bxl-medium-square"
-        | "bxl-linkedin-square"
-        | "bxl-slack"
-        | "bxl-play-store"
-        | "bxl-google"
-        | "bxl-etsy"
-        | "bxl-algolia"
-        | "bxl-adobe"
-        | "bxl-imdb"
-        | "bxl-visual-studio"
-        | "bxl-flutter"
-        | "bxl-mastodon"
-        | "bxl-patreon"
-        | "bxl-sketch"
-        | "bxl-go-lang"
-        | "bxl-upwork"
-        | "bxl-docker"
-        | "bxl-redbubble"
-        | "bxl-figma"
-        | "bxl-discord-alt"
-        | "bxl-php"
-        | "bxl-99designs"
-        | "bxl-meta"
-        | "bxl-aws"
-        | "bxl-unity"
-        | "bxl-gitlab"
-        | "bxl-tailwind-css"
-        | "bxl-steam"
-        | "bxl-audible"
-        | "bxl-jquery"
-        | "bxl-pinterest-alt"
-        | "bxl-facebook-circle"
-        | "bxl-instagram-alt"
-        | "bxl-tiktok"
-        | "bxl-trip-advisor"
-        | "bxl-netlify"
-        | "bxl-heroku"
-        | "bxl-flask"
-        | "bxl-venmo"
-        | "bxl-gmail"
-        | "bxl-java"
-        | "bxl-deezer"
-        | "bxl-xing"
-        | "bxl-mongodb"
-        | "bxl-postgresql"
-        | "bxl-graphql"
-        | "bxl-typescript";
+      | 'bxl-kubernetes'
+      | 'bxl-snapchat'
+      | 'bxl-yelp'
+      | 'bxl-discourse'
+      | 'bxl-internet-explorer'
+      | 'bxl-git'
+      | 'bxl-creative-commons'
+      | 'bxl-dev-to'
+      | 'bxl-medium-old'
+      | 'bxl-ok-ru'
+      | 'bxl-yahoo'
+      | 'bxl-amazon'
+      | 'bxl-jsfiddle'
+      | 'bxl-kickstarter'
+      | 'bxl-blender'
+      | 'bxl-firefox'
+      | 'bxl-visa'
+      | 'bxl-spring-boot'
+      | 'bxl-product-hunt'
+      | 'bxl-airbnb'
+      | 'bxl-bootstrap'
+      | 'bxl-quora'
+      | 'bxl-soundcloud'
+      | 'bxl-c-plus-plus'
+      | 'bxl-markdown'
+      | 'bxl-codepen'
+      | 'bxl-flickr-square'
+      | 'bxl-flickr'
+      | 'bxl-wikipedia'
+      | 'bxl-wordpress'
+      | 'bxl-python'
+      | 'bxl-stack-overflow'
+      | 'bxl-baidu'
+      | 'bxl-bing'
+      | 'bxl-stripe'
+      | 'bxl-shopify'
+      | 'bxl-foursquare'
+      | 'bxl-microsoft'
+      | 'bxl-mailchimp'
+      | 'bxl-digg'
+      | 'bxl-redux'
+      | 'bxl-edge'
+      | 'bxl-dropbox'
+      | 'bxl-google-cloud'
+      | 'bxl-javascript'
+      | 'bxl-joomla'
+      | 'bxl-telegram'
+      | 'bxl-zoom'
+      | 'bxl-drupal'
+      | 'bxl-microsoft-teams'
+      | 'bxl-tux'
+      | 'bxl-angular'
+      | 'bxl-firebase'
+      | 'bxl-spotify'
+      | 'bxl-opera'
+      | 'bxl-unsplash'
+      | 'bxl-vuejs'
+      | 'bxl-chrome'
+      | 'bxl-trello'
+      | 'bxl-wix'
+      | 'bxl-whatsapp-square'
+      | 'bxl-500px'
+      | 'bxl-react'
+      | 'bxl-deviantart'
+      | 'bxl-nodejs'
+      | 'bxl-digitalocean'
+      | 'bxl-django'
+      | 'bxl-less'
+      | 'bxl-sass'
+      | 'bxl-invision'
+      | 'bxl-periscope'
+      | 'bxl-squarespace'
+      | 'bxl-html5'
+      | 'bxl-ebay'
+      | 'bxl-magento'
+      | 'bxl-css3'
+      | 'bxl-paypal'
+      | 'bxl-mastercard'
+      | 'bxl-dailymotion'
+      | 'bxl-windows'
+      | 'bxl-tumblr'
+      | 'bxl-google-plus'
+      | 'bxl-android'
+      | 'bxl-skype'
+      | 'bxl-twitter'
+      | 'bxl-vimeo'
+      | 'bxl-github'
+      | 'bxl-messenger'
+      | 'bxl-blogger'
+      | 'bxl-discord'
+      | 'bxl-facebook-square'
+      | 'bxl-medium'
+      | 'bxl-pinterest'
+      | 'bxl-bitcoin'
+      | 'bxl-youtube'
+      | 'bxl-vk'
+      | 'bxl-pocket'
+      | 'bxl-linkedin'
+      | 'bxl-google-plus-circle'
+      | 'bxl-whatsapp'
+      | 'bxl-reddit'
+      | 'bxl-apple'
+      | 'bxl-dribbble'
+      | 'bxl-behance'
+      | 'bxl-instagram'
+      | 'bxl-facebook'
+      | 'bxl-twitch'
+      | 'bxl-slack-old'
+      | 'bxl-medium-square'
+      | 'bxl-linkedin-square'
+      | 'bxl-slack'
+      | 'bxl-play-store'
+      | 'bxl-google'
+      | 'bxl-etsy'
+      | 'bxl-algolia'
+      | 'bxl-adobe'
+      | 'bxl-imdb'
+      | 'bxl-visual-studio'
+      | 'bxl-flutter'
+      | 'bxl-mastodon'
+      | 'bxl-patreon'
+      | 'bxl-sketch'
+      | 'bxl-go-lang'
+      | 'bxl-upwork'
+      | 'bxl-docker'
+      | 'bxl-redbubble'
+      | 'bxl-figma'
+      | 'bxl-discord-alt'
+      | 'bxl-php'
+      | 'bxl-99designs'
+      | 'bxl-meta'
+      | 'bxl-aws'
+      | 'bxl-unity'
+      | 'bxl-gitlab'
+      | 'bxl-tailwind-css'
+      | 'bxl-steam'
+      | 'bxl-audible'
+      | 'bxl-jquery'
+      | 'bxl-pinterest-alt'
+      | 'bxl-facebook-circle'
+      | 'bxl-instagram-alt'
+      | 'bxl-tiktok'
+      | 'bxl-trip-advisor'
+      | 'bxl-netlify'
+      | 'bxl-heroku'
+      | 'bxl-flask'
+      | 'bxl-venmo'
+      | 'bxl-gmail'
+      | 'bxl-java'
+      | 'bxl-deezer'
+      | 'bxl-xing'
+      | 'bxl-mongodb'
+      | 'bxl-postgresql'
+      | 'bxl-graphql'
+      | 'bxl-typescript';
       id?: string;
     }[];
   };
   navigation: {
     items: {
-      type: "link" | "subMenu" | "auto";
+      type: 'link' | 'subMenu' | 'auto';
       label: string;
       subMenu?: {
         sublink: {
           link: {
-            type?: "reference" | "custom";
+            type?: 'reference' | 'custom';
             label: string;
             reference: {
               value: string | Page;
-              relationTo: "pages";
+              relationTo: 'pages';
             };
             url: string;
             newTab?: boolean;
@@ -978,10 +964,10 @@ export interface Setting {
         }[];
       };
       link?: {
-        type?: "reference" | "custom" | "email" | "phone";
+        type?: 'reference' | 'custom' | 'email' | 'phone';
         reference: {
           value: string | Page;
-          relationTo: "pages";
+          relationTo: 'pages';
         };
         url: string;
         email: string;
@@ -989,15 +975,15 @@ export interface Setting {
         newTab?: boolean;
       };
       auto?: {
-        name: "categories" | "recruitment";
+        name: 'categories' | 'recruitment';
         baseURL: string;
         sublink?: {
           link: {
-            type?: "reference" | "custom";
+            type?: 'reference' | 'custom';
             label: string;
             reference: {
               value: string | Page;
-              relationTo: "pages";
+              relationTo: 'pages';
             };
             url: string;
             newTab?: boolean;
@@ -1011,7 +997,7 @@ export interface Setting {
   config: {
     projectsPerPage: number;
   };
-  _status?: "draft" | "published";
+  _status?: 'draft' | 'published';
   updatedAt?: string;
   createdAt?: string;
 }

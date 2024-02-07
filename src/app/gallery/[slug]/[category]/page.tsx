@@ -1,17 +1,20 @@
-import Transport, { GetProps, ParallelTransport } from "@/lib/transport";
-import { Category, Project } from "@/types/payload-types";
-import { GalleryMedia } from "../components/Gallery";
-import Lightbox from "../components/Gallery/Lightbox";
-import { Container as ModalContainer, Provider, Toggler } from "../components/Client/Modal";
-import Gallery from "./Gallery";
-import Link from "next/link";
+import Transport, { type GetProps, ParallelTransport, type QueryResult } from "@/lib/transport";
+import type { Category, Project } from "@/types/payload-types";
+import type { GalleryMedia } from "../components/Gallery";
 import { notFound } from "next/navigation";
+import ProjectHeader from "../components/ProjectHeader";
+import { Provider } from "../components/Client/Modal";
+import Gallery from "@/components/Projects/Gallery";
 
 async function getProjectCategory(
   slug: string,
   category: string,
   options?: GetProps
-) {
+): Promise<{ 
+  media: QueryResult | null;
+  project: Project | null;
+  categories: Category | null;
+}> {
   const parallel = new ParallelTransport(
     {
       collection: "projects",
@@ -40,6 +43,7 @@ async function getProjectCategory(
   if (!project?.toSingle() || !categories?.toSingle()) return {
     project: null,
     categories: null,
+    media: null,
   }
 
   const projectId = project?.toSingle()?.id;
@@ -70,6 +74,8 @@ async function getProjectCategory(
 
   if (!mediaDocs) return {
     media: null,
+    project: null,
+    categories: null,
   }
 
   const result = {
@@ -92,7 +98,7 @@ export default async function Page({
     { draftable: true }
   );
 
-  if (!media || !project || !categories) return null;
+  if (!media || !project || !categories) return notFound();
 
   const mediaList: GalleryMedia[] = media?.value("docs") as GalleryMedia[];
 
@@ -100,29 +106,11 @@ export default async function Page({
 
   return (
     <Provider transTime={400}>
-      <main>
-        <Gallery
-          media={mediaList}
-        >
-          <h3>
-            <Link href={`/gallery/${project?.slug}`}>{project?.name}</Link> /{" "}
-            {categories?.name}
-          </h3>
+      <article className="section">
+        <ProjectHeader project={project} />
 
-          <Link href={`/gallery/${project?.slug}`}>View Project</Link>
-        </Gallery>
-
-        <ModalContainer>
-          {mediaList?.map((m, idx) => (
-            <Lightbox 
-              media={m}
-              key={m?.id + "_modal_category_" + idx}
-              prev={idx !== 0 ? mediaList[idx - 1]?.id : null}
-              next={(mediaList?.length - 1) !== idx ? mediaList[idx + 1]?.id : null}
-            />
-          ))}
-        </ModalContainer>
-      </main>
+        <Gallery media={mediaList} />
+      </article>
     </Provider>
   );
 }

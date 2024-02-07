@@ -10,7 +10,7 @@ export type GetProps = {
   options?: RequestInit;
 };
 
-class QueryResult {
+export class QueryResult {
   constructor(private data: any) {}
 
   value(property?: string): any {

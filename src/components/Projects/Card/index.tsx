@@ -8,17 +8,15 @@ import { Fragment } from "react";
 
 export type ProjectCard = {
   card: {
-    details: {
-      thumbnail: {
+    thumbnail: {
         poster?: Media;
       } & Media
-    }
   } & Project;
   index: number;
   last: boolean;
 }
 
-const Card: React.FC<ProjectCard> = ({ card: { name, slug, details: { description, thumbnail } }, index, last }) => {
+const Card: React.FC<ProjectCard> = ({ card: { name, slug, description, thumbnail }, index, last }) => {
   const href = `/gallery/${slug}`;
 
   return (
