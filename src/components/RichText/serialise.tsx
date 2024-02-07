@@ -10,6 +10,7 @@ export type Children = Leaf[];
 
 export type Leaf = {
   type: string;
+  textAlign?: "left" | "center" | "right";
   value?: {
     url: string;
     alt: string;
@@ -64,38 +65,45 @@ export const serialise = (
 
     if (!node) return <></>;
 
+    const props = {
+      style: {
+        textAlign: node.textAlign,
+      },
+      key: i,
+    }
+
     switch (node.type) {
       case "h1":
-        return <h1 key={i}>{serialise(node.children as Children)}</h1>;
+        return <h1 {...props}>{serialise(node.children as Children)}</h1>;
       case "h2":
-        return <h2 key={i}>{serialise(node.children as Children)}</h2>;
+        return <h2 {...props}>{serialise(node.children as Children)}</h2>;
       case "h3":
-        return <h3 key={i}>{serialise(node.children as Children)}</h3>;
+        return <h3 {...props}>{serialise(node.children as Children)}</h3>;
       case "h4":
-        return <h4 key={i}>{serialise(node.children as Children)}</h4>;
+        return <h4 {...props}>{serialise(node.children as Children)}</h4>;
       case "h5":
-        return <h5 key={i}>{serialise(node.children as Children)}</h5>;
+        return <h5 {...props}>{serialise(node.children as Children)}</h5>;
       case "h6":
-        return <h6 key={i}>{serialise(node.children as Children)}</h6>;
+        return <h6 {...props}>{serialise(node.children as Children)}</h6>;
       case "blockquote":
         return (
-          <blockquote key={i}>
+          <blockquote {...props}>
             {serialise(node.children as Children)}
           </blockquote>
         );
       case "ul":
-        return <ul key={i}>{serialise(node.children as Children)}</ul>;
+        return <ul {...props}>{serialise(node.children as Children)}</ul>;
       case "ol":
-        return <ol key={i}>{serialise(node.children as Children)}</ol>;
+        return <ol {...props}>{serialise(node.children as Children)}</ol>;
       case "li":
-        return <li key={i}>{serialise(node.children as Children)}</li>;
+        return <li {...props}>{serialise(node.children as Children)}</li>;
       case "link":
         return (
           <Link
             href={escapeHTML(parseLink(node))}
             // @ts-expect-error
             className={node?.fields?.appearance || ""}
-            key={i}
+            {...props}
           >
             {serialise(node.children as Children)}
           </Link>
@@ -107,9 +115,10 @@ export const serialise = (
             alt={node?.value?.alt as string}
             width={node?.value?.width as number}
             height={node?.value?.height as number}
+            key={i}
           />
         );
       default:
-        return <p key={i}>{serialise(node.children as Children)}</p>;
+        return <p {...props}>{serialise(node.children as Children)}</p>;
     }
   });
