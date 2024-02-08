@@ -1,6 +1,5 @@
 import Transport from "@/lib/transport";
-import { Provider } from "../../[slug]/components/Client/Modal";
-import type { GalleryMedia } from "../../[slug]/components/Gallery";
+import type { GalleryMedia } from "@/types/media";
 import { Category } from "@/types/payload-types";
 import type { SegmentProps } from "@/types/segment-props";
 import { Metadata } from "next";
@@ -36,24 +35,22 @@ export default async function Page({ params: { category } }: SegmentProps<"categ
   const mediaList: GalleryMedia[] = mediaTransport?.value("docs") as GalleryMedia[];
 
   return (
-    <Provider transTime={400}>
-      <main>
-        <Banner hero={{
-          title: categories?.name,
-          description: [
-            {
-              children: [
-                {
-                  text: `Find ${categories?.name} photos from across our various projects.`,
-                },
-              ],
-            },
-          ],
-        }} />
+    <main>
+      <Banner hero={{
+        title: categories?.name,
+        description: [
+          {
+            children: [
+              {
+                text: `Find ${categories?.name} photos from across our various projects.`,
+              },
+            ],
+          },
+        ],
+      }} />
 
-        <Gallery media={mediaList} />
-      </main>
-    </Provider>
+      <Gallery media={mediaList} />
+    </main>
   );
 }
 

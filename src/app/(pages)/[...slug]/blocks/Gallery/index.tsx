@@ -1,4 +1,3 @@
-import { Provider } from "@/app/gallery/[slug]/components/Client/Modal";
 import Transport from "@/lib/transport";
 import { Category, Page } from "@/types/payload-types";
 import { notFound } from "next/navigation";
@@ -45,13 +44,11 @@ const Gallery: React.FC<{
 
   // Change Gallery Block to an array with a category and link to its specific page. (Individual Page, custom or default)
   return (
-    <Provider transTime={400}>
-      <section className="section">
-        <GalleryHeader baseURL={breadcrumbs?.at(-1)?.url || "/"} categories={categories} />
+    <section className="section">
+      <GalleryHeader baseURL={breadcrumbs?.at(-1)?.url || "/"} categories={categories} />
 
-        <MediaGallery media={media} />
-      </section>
-    </Provider>
+      <MediaGallery media={media} />
+    </section>
   )
 }
 

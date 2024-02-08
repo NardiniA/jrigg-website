@@ -1,9 +1,8 @@
 import Transport, { type GetProps, ParallelTransport, type QueryResult } from "@/lib/transport";
 import type { Category, Project } from "@/types/payload-types";
-import type { GalleryMedia } from "../components/Gallery";
+import type { GalleryMedia } from "@/types/media";
 import { notFound } from "next/navigation";
 import ProjectHeader from "../components/ProjectHeader";
-import { Provider } from "../components/Client/Modal";
 import Gallery from "@/components/Projects/Gallery";
 
 async function getProjectCategory(
@@ -66,6 +65,7 @@ async function getProjectCategory(
           },
         ],
       },
+      limit: 100_000,
       sort: "filename"
     },
   });
@@ -105,13 +105,11 @@ export default async function Page({
   if (!mediaList?.length) return notFound();
 
   return (
-    <Provider transTime={400}>
-      <article className="section">
-        <ProjectHeader project={project} baseURL={`/gallery/${project?.slug}`} />
+    <article className="section">
+      <ProjectHeader project={project} baseURL={`/gallery/${project?.slug}`} />
 
-        <Gallery media={mediaList} />
-      </article>
-    </Provider>
+      <Gallery media={mediaList} />
+    </article>
   );
 }
 

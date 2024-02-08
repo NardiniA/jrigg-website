@@ -1,8 +1,7 @@
 import { SegmentProps } from "@/types/segment-props";
 import Transport, { type GetProps } from "@/lib/transport";
 import { notFound } from "next/navigation";
-import { GalleryMedia } from "./components/Gallery";
-import { Provider } from "./components/Client/Modal";
+import type { GalleryMedia } from "@/types/media";
 import { Project } from "@/types/payload-types";
 import ProjectHeader from "./components/ProjectHeader";
 import Gallery from "@/components/Projects/Gallery";
@@ -53,13 +52,11 @@ export default async function Page({ params: { slug } }: SegmentProps) {
   const media = await getMedia(project?.id);
 
   return (
-    <Provider transTime={400}>
-      <article className="section">
-        <ProjectHeader project={project} baseURL={`/gallery/${project?.slug}`} />
+    <article className="section">
+      <ProjectHeader project={project} baseURL={`/gallery/${project?.slug}`} />
 
-        <Gallery media={media} />
-      </article>
-    </Provider>
+      <Gallery media={media} />
+    </article>
   )
 }
 

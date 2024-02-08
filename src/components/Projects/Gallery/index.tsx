@@ -1,17 +1,52 @@
-import { GalleryMedia } from "@/app/gallery/[slug]/components/Gallery"
+"use client";
+
+import type { GalleryMedia } from "@/types/media";
 import styles from "./index.module.scss";
 import Image from "next/image";
-import { Container, Provider, Toggler } from "@/app/gallery/[slug]/components/Client/Modal";
-import Lightbox from "./Lightbox";
+import Toggler from "./Toggler";
+
+import "yet-another-react-lightbox/styles.css";
+import Lightbox, { Slide, SlideVideo } from "yet-another-react-lightbox";
+import { Fullscreen, Slideshow, Video } from "yet-another-react-lightbox/plugins";
+import { useState } from "react";
 
 const Gallery: React.FC<{ media: GalleryMedia[] }> = ({ media }) => {
+  const [index, setIndex] = useState(-1);
+  
   if (!media?.length) return null;
 
+  // @ts-expect-error
+  const lightboxMedia: (Slide | SlideVideo)[] = media?.map((m) => {
+    if (m?.mimeType?.includes("video")) {
+      return {
+        type: "video",
+        poster: m?.poster?.url,
+        width: m?.width,
+        height: m?.height,
+        autoPlay: true,
+        controls: true,
+        sources: [
+          {
+            src: m?.url,
+            type: m?.mimeType,
+          },
+        ],
+      }
+    }
+
+    return {
+      type: "image",
+      src: m?.url,
+      width: m?.width,
+      height: m?.height,
+    }
+  })
+
   return (
-    <Provider transTime={400}>
+    <>
       <div className={styles["image-gallery"]}>
         {media?.map((m, idx) => (
-          <Toggler slug={m?.id} className={styles["image-gallery_item"]} key={m?.id + "_proj_gal_" + idx}>
+          <Toggler className={styles["image-gallery_item"]} index={idx} setIndex={setIndex} key={m?.id + "_proj_toggler_" + idx}>
             <Image
               src={m?.poster?.url || m?.url as string}
               alt={m?.alt}
@@ -24,19 +59,17 @@ const Gallery: React.FC<{ media: GalleryMedia[] }> = ({ media }) => {
         ))}
       </div>
 
-      <Container>
-        {media?.map((m, idx) => {
-          return (
-            <Lightbox
-              media={m}
-              key={m?.id + "_modal_" + idx}
-              prev={idx !== 0 ? media[idx - 1]?.id : null}
-              next={(media?.length - 1) !== idx ? media[idx + 1]?.id : null}
-            />
-          )
-        })}
-      </Container>
-    </Provider>
+      <Lightbox
+        slides={lightboxMedia}
+        open={index >= 0}
+        index={index}
+        close={() => setIndex(-1)}
+        // render={{
+        //   slide: NextImage,
+        // }}
+        plugins={[Fullscreen, Slideshow, Video]}
+      />
+    </>
   )
 }
 

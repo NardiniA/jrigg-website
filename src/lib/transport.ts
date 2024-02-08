@@ -68,7 +68,7 @@ class ParallelTransport {
   }
 
   async get(args?: GetProps): Promise<QueryResult[]> {
-    const transportPromises = await Promise.all(this.transports?.map(async (transport) => await transport.get(args)));
+    const transportPromises = await Promise.all(this.transports?.map(async (transport) => transport.get(args)));
 
     return transportPromises;
   }
