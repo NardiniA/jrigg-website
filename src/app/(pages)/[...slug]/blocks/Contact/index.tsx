@@ -1,9 +1,11 @@
 import { Children } from "@/components/RichText/serialise";
 import styles from "./index.module.scss";
 import RichText from "@/components/RichText";
+import { Page } from "@/types/payload-types";
 
 const Contact: React.FC<{
   section: { maps: string; details: Children };
+  breadcrumbs?: Page["breadcrumbs"];
   priority: boolean;
 }> = ({ section: { maps, details } }) => (
   <section className="section">

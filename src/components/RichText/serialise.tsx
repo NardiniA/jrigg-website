@@ -74,36 +74,36 @@ export const serialise = (
 
     switch (node.type) {
       case "h1":
-        return <h1 {...props}>{serialise(node.children as Children)}</h1>;
+        return <h1 style={{ textAlign: node.textAlign }} key={i}>{serialise(node.children as Children)}</h1>;
       case "h2":
-        return <h2 {...props}>{serialise(node.children as Children)}</h2>;
+        return <h2 style={{ textAlign: node.textAlign }} key={i}>{serialise(node.children as Children)}</h2>;
       case "h3":
-        return <h3 {...props}>{serialise(node.children as Children)}</h3>;
+        return <h3 style={{ textAlign: node.textAlign }} key={i}>{serialise(node.children as Children)}</h3>;
       case "h4":
-        return <h4 {...props}>{serialise(node.children as Children)}</h4>;
+        return <h4 style={{ textAlign: node.textAlign }} key={i}>{serialise(node.children as Children)}</h4>;
       case "h5":
-        return <h5 {...props}>{serialise(node.children as Children)}</h5>;
+        return <h5 style={{ textAlign: node.textAlign }} key={i}>{serialise(node.children as Children)}</h5>;
       case "h6":
-        return <h6 {...props}>{serialise(node.children as Children)}</h6>;
+        return <h6 style={{ textAlign: node.textAlign }} key={i}>{serialise(node.children as Children)}</h6>;
       case "blockquote":
         return (
-          <blockquote {...props}>
+          <blockquote style={{ textAlign: node.textAlign }} key={i}>
             {serialise(node.children as Children)}
           </blockquote>
         );
       case "ul":
-        return <ul {...props}>{serialise(node.children as Children)}</ul>;
+        return <ul style={{ textAlign: node.textAlign }} key={i}>{serialise(node.children as Children)}</ul>;
       case "ol":
-        return <ol {...props}>{serialise(node.children as Children)}</ol>;
+        return <ol style={{ textAlign: node.textAlign }} key={i}>{serialise(node.children as Children)}</ol>;
       case "li":
-        return <li {...props}>{serialise(node.children as Children)}</li>;
+        return <li style={{ textAlign: node.textAlign }} key={i}>{serialise(node.children as Children)}</li>;
       case "link":
         return (
           <Link
             href={escapeHTML(parseLink(node))}
             // @ts-expect-error
             className={node?.fields?.appearance || ""}
-            {...props}
+            style={{ textAlign: node.textAlign }} key={i}
           >
             {serialise(node.children as Children)}
           </Link>
@@ -119,6 +119,6 @@ export const serialise = (
           />
         );
       default:
-        return <p {...props}>{serialise(node.children as Children)}</p>;
+        return <p style={{ textAlign: node.textAlign }} key={i}>{serialise(node.children as Children)}</p>;
     }
   });

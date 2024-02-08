@@ -1,6 +1,6 @@
 import Transport from "@/lib/transport";
 import Column from "@/components/Projects/Column";
-import { Project } from "@/types/payload-types";
+import type { Page, Project } from "@/types/payload-types";
 import { createQuery } from "./createQuery";
 
 const Projects: React.FC<{
@@ -9,6 +9,7 @@ const Projects: React.FC<{
     complete: "wip" | "complete" | "both";
     manual: Project[];
   };
+  breadcrumbs?: Page["breadcrumbs"];
   priority: boolean;
 }> = async ({ section }) => {
   const query = await createQuery(section);

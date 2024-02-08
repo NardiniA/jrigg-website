@@ -1,8 +1,9 @@
 import SectionHeader from "@/components/SectionHeader";
 import styles from "./index.module.scss";
 import Image from "next/image";
+import { Page } from "@/types/payload-types";
 
-const Team: React.FC<{ section: any, priority: boolean; }> = async ({
+const Team: React.FC<{ section: any; breadcrumbs?: Page["breadcrumbs"]; priority: boolean; }> = async ({
   section: { header, members },
   priority
 }) => {

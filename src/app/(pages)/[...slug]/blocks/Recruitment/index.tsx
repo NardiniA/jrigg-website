@@ -2,11 +2,13 @@ import styles from "./index.module.scss";
 import Link from "next/link";
 import { classes } from "@/utilities/classes";
 import Transport from "@/lib/transport";
-import { Recruitment } from "@/types/payload-types";
+import { Page, Recruitment } from "@/types/payload-types";
 import { Query } from "@/types/where";
 
 const Recruitment: React.FC<{
-  section: { type: "automatic" | "manual"; manual: Recruitment[] }; priority: boolean;
+  section: { type: "automatic" | "manual"; manual: Recruitment[] };
+  breadcrumbs?: Page["breadcrumbs"];
+  priority: boolean;
 }> = async ({ section: { type, manual } }) => {
   const query: Query =
     type === "automatic"

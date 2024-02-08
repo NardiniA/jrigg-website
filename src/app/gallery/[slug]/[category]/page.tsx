@@ -107,7 +107,7 @@ export default async function Page({
   return (
     <Provider transTime={400}>
       <article className="section">
-        <ProjectHeader project={project} />
+        <ProjectHeader project={project} baseURL={`/gallery/${project?.slug}`} />
 
         <Gallery media={mediaList} />
       </article>

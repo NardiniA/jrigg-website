@@ -2,8 +2,9 @@ import styles from "./index.module.scss";
 import { classes } from "@/utilities/classes";
 import { default as Content } from "@/components/RichText";
 import { Children } from "@/components/RichText/serialise";
+import { Page } from "@/types/payload-types";
 
-const RichText: React.FC<{ section: { align: "left" | "center" | "right", richText: Children }, priority: boolean }> = ({ section: { align, richText } }) => {
+const RichText: React.FC<{ section: { align: "left" | "center" | "right", richText: Children }; breadcrumbs?: Page["breadcrumbs"]; priority: boolean }> = ({ section: { align, richText } }) => {
   if (!!richText?.length) return (
     <section className="section">
       <div className="container">

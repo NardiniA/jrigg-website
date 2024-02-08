@@ -2,8 +2,9 @@ import { classes } from "@/utilities/classes";
 import styles from "./index.module.scss";
 import RichText from "@/components/RichText";
 import Image from "next/image";
+import { Page } from "@/types/payload-types";
 
-const TextImage: React.FC<{ section: any, priority: boolean }> = async ({ section, priority }) => {
+const TextImage: React.FC<{ section: any, breadcrumbs?: Page["breadcrumbs"]; priority: boolean }> = async ({ section, priority }) => {
 
   return (
     <section

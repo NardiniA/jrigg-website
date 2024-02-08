@@ -3,6 +3,7 @@ import { Provider, Slide, Track } from "./Client";
 import styles from "./index.module.scss";
 import Link from "next/link";
 import type { Children } from "@/types/children";
+import { Page } from "@/types/payload-types";
 
 const LinkWrapper: React.FC<{ href?: string; } & Children> = ({ href, children }) => {
   if (!!href) return <Link href={href}>{children}</Link>;
@@ -12,6 +13,7 @@ const LinkWrapper: React.FC<{ href?: string; } & Children> = ({ href, children }
 
 const Associates: React.FC<{
   section: { header: any; associates: any[] };
+  breadcrumbs?: Page["breadcrumbs"];
   priority: boolean;
 }> = ({ section: { associates } }) => {
   if (!!associates?.length) {

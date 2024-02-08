@@ -16,6 +16,8 @@ const Gallery: React.FC<{ media: GalleryMedia[] }> = ({ media }) => {
               src={m?.poster?.url || m?.url as string}
               alt={m?.alt}
               sizes="(max-width: 639px) 100vw, (max-width: 1279px) 50vw, 25vw"
+              placeholder={(m?.poster?.placeholder || m?.placeholder) ? "blur" : "empty"}
+              blurDataURL={m?.poster?.placeholder || m?.placeholder || undefined}
               fill
             />
           </Toggler>

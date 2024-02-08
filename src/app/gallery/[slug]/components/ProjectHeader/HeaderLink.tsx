@@ -11,7 +11,7 @@ const HeaderLink: React.FC<{
   children: React.ReactNode;
 }> = ({ href, projectSlug, categorySlug, children, ...rest }) => {
   const pathname = usePathname();
-  const isActive = (categorySlug && pathname?.includes(categorySlug)) || projectSlug && pathname === `/gallery/${projectSlug}`;
+  const isActive = (categorySlug && pathname?.includes(categorySlug)) || projectSlug && pathname === projectSlug;
 
   return (
     <Link href={href} className={isActive ? styles["active"] : undefined} {...rest}>

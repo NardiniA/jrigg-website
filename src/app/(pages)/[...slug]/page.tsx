@@ -30,7 +30,7 @@ export default async function Page({ params }: SegmentAllProps) {
   return (
     <>
       <Hero hero={page?.hero} breadcrumbs={page?.breadcrumbs} />
-      <Blocks sections={page?.sections} />
+      <Blocks breadcrumbs={page?.breadcrumbs} sections={page?.sections} />
     </>
   )
 }
