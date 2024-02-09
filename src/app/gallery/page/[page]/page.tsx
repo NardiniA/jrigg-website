@@ -21,7 +21,7 @@ function getProjects(limit: number, query?: Query) {
 export default async function Page({ params }: SegmentProps<"page">) {
   const pageNumber = parseInt(params && params.page) || 1;
   const limit = (await getSettings({ draftable: true }))?.config?.projectsPerPage || 6;
-  const projects = (await getProjects(limit, { page: +pageNumber }).get({ draftable: true, options: { next: { tags: ["projects"] } } }));
+  const projects = (await getProjects(limit, { page: +pageNumber, sort: "name" }).get({ draftable: true, options: { next: { tags: ["projects"] } } }));
 
   const bannerData = {
     hero: {
@@ -57,7 +57,7 @@ export async function generateStaticParams() {
   const limit =
     (await getSettings())?.config?.projectsPerPage || 6;
 
-  const totalPages = (await getProjects(limit).get()).value("totalPages");
+  const totalPages = (await getProjects(limit, { sort: "name" }).get()).value("totalPages");
 
   let paths: { page: string }[] = [];
 

@@ -63,6 +63,9 @@ const Gallery: React.FC<{ media: GalleryMedia[] }> = ({ media }) => {
         slides={lightboxMedia}
         open={index >= 0}
         index={index}
+        carousel={{
+          finite: lightboxMedia?.length === 1,
+        }}
         close={() => setIndex(-1)}
         // render={{
         //   slide: NextImage,

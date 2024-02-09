@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import { unslugify } from "@/utilities/unslugify";
 import Banner from "@/app/(pages)/[...slug]/hero/Banner";
 import Gallery from "@/components/Projects/Gallery";
+import { sortMedia } from "@/utilities/sortMedia";
 
 export default async function Page({ params: { category } }: SegmentProps<"category">) {
   const categories = (await new Transport({
@@ -32,7 +33,7 @@ export default async function Page({ params: { category } }: SegmentProps<"categ
     },
   }).get({ draftable: true, options: { next: { tags: [categories?.id] } } });
 
-  const mediaList: GalleryMedia[] = mediaTransport?.value("docs") as GalleryMedia[];
+  const mediaList = sortMedia(mediaTransport?.value("docs")) as GalleryMedia[];
 
   return (
     <main>

@@ -3,6 +3,8 @@ import { Category, Page } from "@/types/payload-types";
 import { notFound } from "next/navigation";
 import { default as MediaGallery } from "@/components/Projects/Gallery";
 import GalleryHeader from "./GalleryHeader";
+import { sortMedia } from "@/utilities/sortMedia";
+import { GalleryMedia } from "@/types/media";
 
 const Gallery: React.FC<{
   section: {
@@ -38,7 +40,7 @@ const Gallery: React.FC<{
     }
   });
 
-  const media = (await transport.get({ draftable: true })).value("docs");
+  const media = sortMedia((await transport.get({ draftable: true })).value("docs")) as GalleryMedia[];
 
   if (!media?.length) return notFound();
 

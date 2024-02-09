@@ -4,6 +4,7 @@ import type { GalleryMedia } from "@/types/media";
 import { notFound } from "next/navigation";
 import ProjectHeader from "../components/ProjectHeader";
 import Gallery from "@/components/Projects/Gallery";
+import { sortMedia } from "@/utilities/sortMedia";
 
 async function getProjectCategory(
   slug: string,
@@ -66,7 +67,6 @@ async function getProjectCategory(
         ],
       },
       limit: 100_000,
-      sort: "filename"
     },
   });
 
@@ -100,7 +100,7 @@ export default async function Page({
 
   if (!media || !project || !categories) return notFound();
 
-  const mediaList: GalleryMedia[] = media?.value("docs") as GalleryMedia[];
+  const mediaList = sortMedia(media?.value("docs")) as GalleryMedia[];
 
   if (!mediaList?.length) return notFound();
 
