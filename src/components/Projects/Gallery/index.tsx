@@ -15,9 +15,13 @@ const Gallery: React.FC<{ media: GalleryMedia[] }> = ({ media }) => {
   
   if (!media?.length) return null;
 
+  const cloudfrontURL = process.env.NEXT_PUBLIC_CLOUDFRONT_MEDIA_URL;
+
   // @ts-expect-error
   const lightboxMedia: (Slide | SlideVideo)[] = media?.map((m) => {
     if (m?.mimeType?.includes("video")) {
+      const videoSrc = `${cloudfrontURL}/${m?.filename}`;
+
       return {
         type: "video",
         poster: m?.poster?.url,
@@ -27,7 +31,7 @@ const Gallery: React.FC<{ media: GalleryMedia[] }> = ({ media }) => {
         controls: true,
         sources: [
           {
-            src: m?.url,
+            src: videoSrc,
             type: m?.mimeType,
           },
         ],
