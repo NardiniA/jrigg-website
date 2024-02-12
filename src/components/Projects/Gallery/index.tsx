@@ -9,6 +9,7 @@ import "yet-another-react-lightbox/styles.css";
 import Lightbox, { Slide, SlideVideo } from "yet-another-react-lightbox";
 import { Fullscreen, Slideshow, Video } from "yet-another-react-lightbox/plugins";
 import { useState } from "react";
+import { classes } from "@/utilities/classes";
 
 const Gallery: React.FC<{ media: GalleryMedia[] }> = ({ media }) => {
   const [index, setIndex] = useState(-1);
@@ -51,6 +52,13 @@ const Gallery: React.FC<{ media: GalleryMedia[] }> = ({ media }) => {
       <div className={styles["image-gallery"]}>
         {media?.map((m, idx) => (
           <Toggler className={styles["image-gallery_item"]} index={idx} setIndex={setIndex} key={m?.id + "_proj_toggler_" + idx}>
+            {m?.mimeType?.includes("video") && (
+              <div className={styles["video-play"]}>
+                <div>
+                  <i className="bx bx-play"></i>
+                </div>
+              </div>
+            )}
             <Image
               src={m?.poster?.url || m?.url as string}
               alt={m?.alt}

@@ -30,7 +30,8 @@
       border: none;
       background: none;
 
-      &::after {
+      &::after,
+      .video-play {
         background-color: transparent;
       }
     }
@@ -52,6 +53,38 @@
 
     img {
       object-fit: cover;
+    }
+
+    .video-play {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0,0,0,0.15);
+      transition-duration: 0.3s;
+      transition-timing-function: ease-in;
+      
+      div {
+        background: rgba(0,0,0,0.75);
+        padding: 12px 12px 12px 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 9999px;
+
+        svg, i {
+          color: var(--white-colour);
+          width: 2.25rem;
+          height: 2.25rem;
+          font-size: 2.25rem;
+          line-height: 1;
+        }
+      }
     }
   }
 }
