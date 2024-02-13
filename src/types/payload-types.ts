@@ -70,6 +70,26 @@ export interface Page {
       blockType: 'embed-form';
     }
     | {
+      categories?: {
+        categories: string | Category;
+        link: {
+          type?: 'reference' | 'custom';
+          label: string;
+          reference: {
+            value: string | Page;
+            relationTo: 'pages';
+          };
+          url: string;
+          newTab?: boolean;
+        };
+        id?: string;
+      }[];
+      media: string[] | Category[];
+      id?: string;
+      blockName?: string;
+      blockType: 'gallery-list';
+    }
+    | {
       type: 'automatic' | 'manual';
       complete: 'wip' | 'complete' | 'both';
       manual: string[] | Project[];
@@ -163,7 +183,7 @@ export interface Project {
   complete?: boolean;
   description: string;
   thumbnail: string | Media;
-  categories: string[] | Category[];
+  categories?: string[] | Category[];
   updatedAt: string;
   createdAt: string;
   _status?: 'draft' | 'published';

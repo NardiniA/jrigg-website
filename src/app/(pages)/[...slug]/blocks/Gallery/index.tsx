@@ -23,16 +23,17 @@ const Gallery: React.FC<{
         newTab?: boolean;
       },
     }[],
+    media: Category[];
   };
   breadcrumbs?: Page["breadcrumbs"];
   priority: boolean;
-}> = async ({ section: { categories }, breadcrumbs }) => {
+}> = async ({ section: { categories, media }, breadcrumbs }) => {
   const transport = new Transport({
     collection: "media",
     query: {
       where: {
         categories: {
-          in: categories?.map(({ categories: { id } }) => id),
+          in: media?.map(({ id }) => id),
         },
       },
       limit: 100_000,
@@ -40,16 +41,16 @@ const Gallery: React.FC<{
     }
   });
 
-  const media = sortMedia((await transport.get({ draftable: true })).value("docs")) as GalleryMedia[];
+  const mediaList = sortMedia((await transport.get({ draftable: true })).value("docs")) as GalleryMedia[];
 
-  if (!media?.length) return notFound();
+  if (!mediaList?.length) return notFound();
 
   // Change Gallery Block to an array with a category and link to its specific page. (Individual Page, custom or default)
   return (
     <section className="section">
       <GalleryHeader baseURL={breadcrumbs?.at(0)?.url || "/"} categories={categories} />
 
-      <MediaGallery media={media} />
+      <MediaGallery media={mediaList} />
     </section>
   )
 }
