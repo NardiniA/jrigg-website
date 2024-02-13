@@ -47,7 +47,7 @@ const Gallery: React.FC<{
   // Change Gallery Block to an array with a category and link to its specific page. (Individual Page, custom or default)
   return (
     <section className="section">
-      <GalleryHeader baseURL={breadcrumbs?.at(-1)?.url || "/"} categories={categories} />
+      <GalleryHeader baseURL={breadcrumbs?.at(0)?.url || "/"} categories={categories} />
 
       <MediaGallery media={media} />
     </section>
