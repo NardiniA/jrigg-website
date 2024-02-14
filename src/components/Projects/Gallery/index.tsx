@@ -60,6 +60,7 @@ const Gallery: React.FC<{ media: GalleryMedia[] }> = ({ media }) => {
               </div>
             )}
             <Image
+              quality={74}
               src={m?.poster?.url || m?.url as string}
               alt={m?.alt}
               sizes="(max-width: 639px) 100vw, (max-width: 1279px) 50vw, 25vw"
