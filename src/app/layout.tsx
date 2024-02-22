@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 import type { Metadata } from "next";
 import { Media } from "@/types/payload-types";
 import { generateMetaImage } from "@/utilities/generateMetaImage";
+import { Analytics } from "@vercel/analytics/react"
 
 export default async function layout({ children }: Children) {
   const settings = await getSettings({ draftable: true });
@@ -47,6 +48,7 @@ export default async function layout({ children }: Children) {
             </style>
           </noscript>
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
