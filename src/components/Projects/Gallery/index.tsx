@@ -9,7 +9,6 @@ import "yet-another-react-lightbox/styles.css";
 import Lightbox, { Slide, SlideVideo } from "yet-another-react-lightbox";
 import { Fullscreen, Slideshow, Video } from "yet-another-react-lightbox/plugins";
 import { useState } from "react";
-import { classes } from "@/utilities/classes";
 
 const Gallery: React.FC<{ media: GalleryMedia[] }> = ({ media }) => {
   const [index, setIndex] = useState(-1);
@@ -30,6 +29,7 @@ const Gallery: React.FC<{ media: GalleryMedia[] }> = ({ media }) => {
         height: m?.height,
         autoPlay: true,
         controls: true,
+        muted: true,
         sources: [
           {
             src: videoSrc,
