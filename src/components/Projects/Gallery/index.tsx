@@ -7,7 +7,7 @@ import Toggler from "./Toggler";
 
 import "yet-another-react-lightbox/styles.css";
 import Lightbox, { Slide, SlideVideo } from "yet-another-react-lightbox";
-import { Fullscreen, Slideshow, Video } from "yet-another-react-lightbox/plugins";
+import { Fullscreen, Video } from "yet-another-react-lightbox/plugins";
 import { useState } from "react";
 
 const Gallery: React.FC<{ media: GalleryMedia[] }> = ({ media }) => {
@@ -80,10 +80,7 @@ const Gallery: React.FC<{ media: GalleryMedia[] }> = ({ media }) => {
           finite: lightboxMedia?.length === 1,
         }}
         close={() => setIndex(-1)}
-        // render={{
-        //   slide: NextImage,
-        // }}
-        plugins={[Fullscreen, Slideshow, Video]}
+        plugins={[Fullscreen, Video]}
       />
     </>
   )
