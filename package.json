@@ -16,6 +16,7 @@
     "@types/react": "18.2.17",
     "@types/react-dom": "18.2.7",
     "@vercel/analytics": "^1.2.2",
+    "@vercel/speed-insights": "^1.0.10",
     "aos": "^2.3.4",
     "boxicons": "^2.1.4",
     "escape-html": "^1.0.3",

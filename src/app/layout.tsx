@@ -12,6 +12,7 @@ import type { Metadata } from "next";
 import { Media } from "@/types/payload-types";
 import { generateMetaImage } from "@/utilities/generateMetaImage";
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default async function layout({ children }: Children) {
   const settings = await getSettings({ draftable: true });
@@ -49,6 +50,7 @@ export default async function layout({ children }: Children) {
           </noscript>
         </Providers>
         <Analytics />
+	<SpeedInsights />
       </body>
     </html>
   );
